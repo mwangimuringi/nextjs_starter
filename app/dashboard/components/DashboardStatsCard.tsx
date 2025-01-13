@@ -6,9 +6,13 @@ type StatsCardProps = {
   description: string;
 };
 
-const DashboardStatsCard: React.FC<StatsCardProps> = ({ title, value, description }) => {
+const DashboardStatsCard: React.FC<StatsCardProps> = ({
+  title,
+  value,
+  description,
+}) => {
   return (
-    <div> 
+    <div className="p-4 border rounded">
       <h3>{title}</h3>
       <p>{value}</p>
       <p>{description}</p>
