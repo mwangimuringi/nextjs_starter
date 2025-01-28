@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 const DashboardHeader: React.FC = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   return (
     <header className="bg-white shadow p-4 flex justify-between items-center">
       <h1 className="text-2xl font-bold text-gray-800">Dashboard</h1>
@@ -10,9 +12,27 @@ const DashboardHeader: React.FC = () => {
           placeholder="Search..."
           className="px-4 py-2 border rounded focus:outline-none focus:ring focus:ring-blue-200"
         />
-        <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-          Logout
-        </button>
+        <div className="relative">
+          <button
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            className="px-4 py-2 bg-gray-100 text-gray-700 rounded hover:bg-gray-200"
+          >
+            Profile
+          </button>
+          {isDropdownOpen && (
+            <div className="absolute right-0 mt-2 w-48 bg-white shadow rounded border">
+              <a href="#" className="block px-4 py-2 hover:bg-gray-100">
+                My Account
+              </a>
+              <a href="#" className="block px-4 py-2 hover:bg-gray-100">
+                Settings
+              </a>
+              <a href="#" className="block px-4 py-2 hover:bg-gray-100">
+                Logout
+              </a>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );
