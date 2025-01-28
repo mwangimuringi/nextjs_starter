@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Home, BarChart, Settings, Menu } from "lucide-react";
+import { Home, BarChart, Settings, Menu, LogOut } from "lucide-react";
 
 const DashboardSidebar: React.FC = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -40,9 +40,7 @@ const DashboardSidebar: React.FC = () => {
                 <a
                   href="#"
                   className={`flex items-center px-4 py-2 rounded ${
-                    activeLink === link.name
-                      ? "bg-gray-700"
-                      : "hover:bg-gray-700"
+                    activeLink === link.name ? "bg-gray-700" : "hover:bg-gray-700"
                   }`}
                   onClick={() => setActiveLink(link.name)}
                 >
@@ -53,6 +51,17 @@ const DashboardSidebar: React.FC = () => {
             ))}
           </ul>
         </nav>
+        {!isCollapsed && (
+          <footer className="mt-6 border-t border-gray-700 pt-4">
+            <a
+              href="#"
+              className="flex items-center text-sm text-gray-400 hover:text-white"
+            >
+              <LogOut className="w-5 h-5 mr-2" />
+              Logout
+            </a>
+          </footer>
+        )}
       </aside>
     </>
   );
