@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Home, BarChart, Settings } from "lucide-react";
+import { Home, BarChart, Settings, Menu } from "lucide-react";
 
 const DashboardSidebar: React.FC = () => {
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const [activeLink, setActiveLink] = useState("Home");
 
   const links = [
@@ -11,7 +12,13 @@ const DashboardSidebar: React.FC = () => {
   ];
 
   return (
-    <aside className="w-64 bg-gray-800 text-white p-6 space-y-4">
+    <aside className={`${isCollapsed ? "w-16" : "w-64"} bg-gray-800 text-white p-6 space-y-4`}>
+      <button
+        onClick={() => setIsCollapsed(!isCollapsed)}
+        className="mb-4 p-2 text-gray-400 hover:text-white"
+      >
+        <Menu className="w-6 h-6" />
+      </button>
       <nav>
         <ul className="space-y-2">
           {links.map((link) => (
@@ -24,7 +31,7 @@ const DashboardSidebar: React.FC = () => {
                 onClick={() => setActiveLink(link.name)}
               >
                 {link.icon}
-                <span className="ml-2">{link.name}</span>
+                {!isCollapsed && <span className="ml-2">{link.name}</span>}
               </a>
             </li>
           ))}
