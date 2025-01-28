@@ -1,13 +1,26 @@
 import React, { useState } from "react";
-import { Bell } from "lucide-react";
+import { Bell, Menu } from "lucide-react";
 
 const DashboardHeader: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white shadow p-4 flex justify-between items-center">
-      <h1 className="text-2xl font-bold text-gray-800">Dashboard</h1>
-      <div className="flex items-center space-x-4">
+    <header className="bg-white shadow p-4 flex justify-between items-center md:flex-row flex-col">
+      <div className="flex justify-between items-center w-full md:w-auto">
+        <h1 className="text-2xl font-bold text-gray-800">Dashboard</h1>
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden p-2 text-gray-600 hover:text-gray-800"
+        >
+          <Menu className="w-6 h-6" />
+        </button>
+      </div>
+      <div
+        className={`mt-4 md:mt-0 flex-col md:flex-row flex items-center space-x-4 ${
+          isMenuOpen ? "flex" : "hidden"
+        } md:flex`}
+      >
         <input
           type="text"
           placeholder="Search..."
