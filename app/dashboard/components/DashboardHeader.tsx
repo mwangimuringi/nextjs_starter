@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Bell } from "lucide-react";
 
 const DashboardHeader: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -12,6 +13,10 @@ const DashboardHeader: React.FC = () => {
           placeholder="Search..."
           className="px-4 py-2 border rounded focus:outline-none focus:ring focus:ring-blue-200"
         />
+        <button className="relative p-2 text-gray-600 hover:text-gray-800">
+          <Bell className="w-5 h-5" />
+          <span className="absolute top-0 right-0 inline-block w-2 h-2 bg-red-500 rounded-full"></span>
+        </button>
         <div className="relative">
           <button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
