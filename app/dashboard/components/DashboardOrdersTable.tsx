@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 type Order = {
   id: string;
@@ -11,23 +11,25 @@ type Props = {
   orders: Order[];
 };
 
-const getStatusColor = (status: Order["status"]) => {
-  switch (status) {
-    case "Processing":
-      return "bg-yellow-500 text-white";
-    case "Completed":
-      return "bg-green-500 text-white";
-    case "Cancelled":
-      return "bg-red-500 text-white";
-    default:
-      return "bg-gray-500 text-white";
-  }
-};
-
 const DashboardOrdersTable: React.FC<Props> = ({ orders }) => {
+  const [search, setSearch] = useState("");
+
+  const filteredOrders = orders.filter((order) =>
+    order.customer.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <div className="bg-white p-6 shadow rounded-lg">
-      <h2 className="text-xl font-bold text-gray-800 mb-4">Recent Orders</h2>
+      <div className="flex justify-between mb-4">
+        <h2 className="text-xl font-bold text-gray-800">Recent Orders</h2>
+        <input
+          type="text"
+          placeholder="Search by customer"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="border px-4 py-2 rounded focus:outline-none focus:ring focus:ring-blue-200"
+        />
+      </div>
       <table className="w-full border-collapse">
         <thead>
           <tr className="bg-gray-100">
@@ -38,15 +40,11 @@ const DashboardOrdersTable: React.FC<Props> = ({ orders }) => {
           </tr>
         </thead>
         <tbody>
-          {orders.map((order) => (
+          {filteredOrders.map((order) => (
             <tr key={order.id} className="border-b">
               <td className="p-3">{order.id}</td>
               <td className="p-3">{order.customer}</td>
-              <td className="p-3">
-                <span className={`px-2 py-1 text-sm rounded ${getStatusColor(order.status)}`}>
-                  {order.status}
-                </span>
-              </td>
+              <td className="p-3">{order.status}</td>
               <td className="p-3">{order.total}</td>
             </tr>
           ))}
