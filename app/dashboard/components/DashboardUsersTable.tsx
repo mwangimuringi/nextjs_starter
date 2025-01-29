@@ -38,5 +38,17 @@ const DashboardUsersTable: React.FC<Props> = ({ users }) => {
     </div>
   );
 };
-
+const getRoleColor = (role: string) => {
+    switch (role) {
+      case "Admin":
+        return "bg-red-500 text-white";
+      case "Manager":
+        return "bg-blue-500 text-white";
+      case "User":
+        return "bg-gray-500 text-white";
+      default:
+        return "bg-gray-300 text-black";
+    }
+  };
+  
 export default DashboardUsersTable;
