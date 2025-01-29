@@ -1,6 +1,17 @@
 import React from "react";
 
-const DashboardOrdersTable: React.FC = () => {
+type Order = {
+  id: string;
+  customer: string;
+  status: string;
+  total: string;
+};
+
+type Props = {
+  orders: Order[];
+};
+
+const DashboardOrdersTable: React.FC<Props> = ({ orders }) => {
   return (
     <div className="bg-white p-6 shadow rounded-lg">
       <h2 className="text-xl font-bold text-gray-800 mb-4">Recent Orders</h2>
@@ -14,12 +25,14 @@ const DashboardOrdersTable: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          <tr className="border-b">
-            <td className="p-3">#1001</td>
-            <td className="p-3">John Doe</td>
-            <td className="p-3">Processing</td>
-            <td className="p-3">$25.99</td>
-          </tr>
+          {orders.map((order) => (
+            <tr key={order.id} className="border-b">
+              <td className="p-3">{order.id}</td>
+              <td className="p-3">{order.customer}</td>
+              <td className="p-3">{order.status}</td>
+              <td className="p-3">{order.total}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
