@@ -1,24 +1,42 @@
-import { Props } from "next/script";
 import React, { useState } from "react";
 
+type User = {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+};
+
+type Props = {
+  users: User[];
+};
+
 const getRoleColor = (role: string) => {
-    switch (role) {
-      case "Admin":
-        return "bg-red-500 text-white";
-      case "Manager":
-        return "bg-blue-500 text-white";
-      case "User":
-        return "bg-gray-500 text-white";
-      default:
-        return "bg-gray-300 text-black";
-    }
-  };
-  
+  switch (role) {
+    case "Admin":
+      return "bg-red-500 text-white";
+    case "Manager":
+      return "bg-blue-500 text-white";
+    case "User":
+      return "bg-gray-500 text-white";
+    default:
+      return "bg-gray-300 text-black";
+  }
+};
+
 const DashboardUsersTable: React.FC<Props> = ({ users }) => {
   const [search, setSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
   const filteredUsers = users.filter((user) =>
     user.name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const totalPages = Math.ceil(filteredUsers.length / itemsPerPage);
+  const paginatedUsers = filteredUsers.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
   );
 
   return (
@@ -43,7 +61,7 @@ const DashboardUsersTable: React.FC<Props> = ({ users }) => {
           </tr>
         </thead>
         <tbody>
-          {filteredUsers.map((user) => (
+          {paginatedUsers.map((user) => (
             <tr key={user.id} className="border-b">
               <td className="p-3">{user.id}</td>
               <td className="p-3">{user.name}</td>
@@ -57,6 +75,26 @@ const DashboardUsersTable: React.FC<Props> = ({ users }) => {
           ))}
         </tbody>
       </table>
+      {/* Pagination Controls */}
+      <div className="flex justify-between mt-4">
+        <button
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+          className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
+        >
+          Previous
+        </button>
+        <span className="text-gray-700">Page {currentPage} of {totalPages}</span>
+        <button
+          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+          disabled={currentPage === totalPages}
+          className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
+
+export default DashboardUsersTable;
