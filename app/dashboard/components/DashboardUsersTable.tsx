@@ -27,17 +27,41 @@ const getRoleColor = (role: string) => {
 const DashboardUsersTable: React.FC<Props> = ({ users }) => {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortBy, setSortBy] = useState<"name" | "role" | null>(null);
+  const [ascending, setAscending] = useState(true);
   const itemsPerPage = 5;
 
   const filteredUsers = users.filter((user) =>
     user.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  const totalPages = Math.ceil(filteredUsers.length / itemsPerPage);
-  const paginatedUsers = filteredUsers.slice(
+  const sortUsers = (users: User[]) => {
+    if (!sortBy) return users;
+    return [...users].sort((a, b) => {
+      if (sortBy === "name") {
+        return ascending ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
+      } else if (sortBy === "role") {
+        return ascending ? a.role.localeCompare(b.role) : b.role.localeCompare(a.role);
+      }
+      return 0;
+    });
+  };
+
+  const sortedUsers = sortUsers(filteredUsers);
+  const totalPages = Math.ceil(sortedUsers.length / itemsPerPage);
+  const paginatedUsers = sortedUsers.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+
+  const handleSort = (key: "name" | "role") => {
+    if (sortBy === key) {
+      setAscending(!ascending);
+    } else {
+      setSortBy(key);
+      setAscending(true);
+    }
+  };
 
   return (
     <div className="bg-white p-6 shadow rounded-lg">
@@ -55,9 +79,19 @@ const DashboardUsersTable: React.FC<Props> = ({ users }) => {
         <thead>
           <tr className="bg-gray-100">
             <th className="p-3 text-left">User ID</th>
-            <th className="p-3 text-left">Name</th>
+            <th
+              className="p-3 text-left cursor-pointer"
+              onClick={() => handleSort("name")}
+            >
+              Name {sortBy === "name" ? (ascending ? "↑" : "↓") : ""}
+            </th>
             <th className="p-3 text-left">Email</th>
-            <th className="p-3 text-left">Role</th>
+            <th
+              className="p-3 text-left cursor-pointer"
+              onClick={() => handleSort("role")}
+            >
+              Role {sortBy === "role" ? (ascending ? "↑" : "↓") : ""}
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -75,24 +109,6 @@ const DashboardUsersTable: React.FC<Props> = ({ users }) => {
           ))}
         </tbody>
       </table>
-      {/* Pagination Controls */}
-      <div className="flex justify-between mt-4">
-        <button
-          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-          disabled={currentPage === 1}
-          className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
-        >
-          Previous
-        </button>
-        <span className="text-gray-700">Page {currentPage} of {totalPages}</span>
-        <button
-          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-          disabled={currentPage === totalPages}
-          className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
-        >
-          Next
-        </button>
-      </div>
     </div>
   );
 };
