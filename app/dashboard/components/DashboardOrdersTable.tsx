@@ -3,12 +3,25 @@ import React from "react";
 type Order = {
   id: string;
   customer: string;
-  status: string;
+  status: "Processing" | "Completed" | "Cancelled";
   total: string;
 };
 
 type Props = {
   orders: Order[];
+};
+
+const getStatusColor = (status: Order["status"]) => {
+  switch (status) {
+    case "Processing":
+      return "bg-yellow-500 text-white";
+    case "Completed":
+      return "bg-green-500 text-white";
+    case "Cancelled":
+      return "bg-red-500 text-white";
+    default:
+      return "bg-gray-500 text-white";
+  }
 };
 
 const DashboardOrdersTable: React.FC<Props> = ({ orders }) => {
@@ -29,7 +42,11 @@ const DashboardOrdersTable: React.FC<Props> = ({ orders }) => {
             <tr key={order.id} className="border-b">
               <td className="p-3">{order.id}</td>
               <td className="p-3">{order.customer}</td>
-              <td className="p-3">{order.status}</td>
+              <td className="p-3">
+                <span className={`px-2 py-1 text-sm rounded ${getStatusColor(order.status)}`}>
+                  {order.status}
+                </span>
+              </td>
               <td className="p-3">{order.total}</td>
             </tr>
           ))}
