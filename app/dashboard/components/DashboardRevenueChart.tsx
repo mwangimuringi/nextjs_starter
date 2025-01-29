@@ -1,16 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-const data = [
-  { name: 'Jan', revenue: 4000 },
-  { name: 'Feb', revenue: 3000 },
-  { name: 'Mar', revenue: 2000 },
-  { name: 'Apr', revenue: 2780 },
-  { name: 'May', revenue: 1890 },
-  { name: 'Jun', revenue: 2390 },
-];
-
 const DashboardRevenueChart: React.FC = () => {
+  const [data, setData] = useState([
+    { name: 'Jan', revenue: 4000 },
+    { name: 'Feb', revenue: 3000 },
+    { name: 'Mar', revenue: 2000 },
+    { name: 'Apr', revenue: 2780 },
+    { name: 'May', revenue: 1890 },
+    { name: 'Jun', revenue: 2390 },
+  ]);
+
+  useEffect(() => {
+    // Simulate fetching new revenue data
+    const fetchData = async () => {
+      // In real-world scenarios, fetch data from an API
+      const newData = [
+        { name: 'Jul', revenue: 3490 },
+        { name: 'Aug', revenue: 4100 },
+        { name: 'Sep', revenue: 3950 },
+      ];
+      setData(prevData => [...prevData, ...newData]);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="p-4 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-semibold text-gray-800">Revenue Overview</h2>
