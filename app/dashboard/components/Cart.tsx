@@ -13,6 +13,11 @@ const Cart = () => {
     { id: "2", name: "Margherita Pizza", price: 10, quantity: 2 },
   ]);
 
+  const totalPrice = cart.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+
   return (
     <div>
       <h2>Shopping Cart</h2>
@@ -23,6 +28,7 @@ const Cart = () => {
           </li>
         ))}
       </ul>
+      <p>Total: ${totalPrice.toFixed(2)}</p>
     </div>
   );
 };
