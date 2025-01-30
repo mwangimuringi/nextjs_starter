@@ -33,19 +33,34 @@ const UserProfile = ({ userId }: UserProfileProps) => {
     fetchUser();
   }, [userId]);
 
-  if (loading) return <p className="text-gray-500 text-center">Loading profile...</p>;
-  if (error) return <p className="text-red-500 text-center">{error}</p>;
+  if (loading)
+    return (
+      <p className="text-gray-500 text-center" role="status">
+        Loading...
+      </p>
+    );
+  if (error)
+    return (
+      <p className="text-red-500 text-center" role="alert">
+        {error}
+      </p>
+    );
 
   return (
-    <div className="p-4 sm:p-6 flex flex-col items-center bg-white shadow-md rounded-lg">
+    <section
+      className="p-4 sm:p-6 flex flex-col items-center bg-white shadow-md rounded-lg"
+      aria-labelledby="user-profile"
+    >
+      <h2 id="user-profile" className="text-xl font-semibold mt-3">
+        {user?.name}
+      </h2>
       <img
         src={user?.avatar}
         alt={`${user?.name}'s avatar`}
         className="w-24 h-24 rounded-full border-2 border-gray-300"
       />
-      <h2 className="text-xl font-semibold mt-3">{user?.name}</h2>
       <p className="text-gray-600">{user?.email}</p>
-    </div>
+    </section>
   );
 };
 
