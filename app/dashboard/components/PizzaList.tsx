@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 type Pizza = {
   id: number;
@@ -28,27 +28,22 @@ const PizzaList = () => {
     fetchPizzas();
   }, []);
 
-  const handleAddToCart = (pizza: Pizza) => {
-    console.log(`Added ${pizza.name} to cart`);
-  };
+  const sortedPizzas = useMemo(() => {
+    return [...pizzas].sort((a, b) => a.name.localeCompare(b.name));
+  }, [pizzas]);
 
-  if (loading) return <p className="text-gray-500 text-center">Loading pizzas...</p>;
+  if (loading)
+    return <p className="text-gray-500 text-center">Loading pizzas...</p>;
   if (error) return <p className="text-red-500 text-center">{error}</p>;
 
   return (
     <div className="p-6">
       <h2 className="text-2xl font-bold text-center mb-4">Pizza Menu</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {pizzas.map((pizza) => (
+        {sortedPizzas.map((pizza) => (
           <div key={pizza.id} className="p-4 bg-white shadow-md rounded-lg">
             <h3 className="text-lg font-semibold">{pizza.name}</h3>
             <p className="text-gray-600">${pizza.price.toFixed(2)}</p>
-            <button
-              className="mt-3 w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition"
-              onClick={() => handleAddToCart(pizza)}
-            >
-              Add to Cart
-            </button>
           </div>
         ))}
       </div>
