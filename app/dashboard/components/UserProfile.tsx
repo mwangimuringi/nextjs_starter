@@ -33,14 +33,18 @@ const UserProfile = ({ userId }: UserProfileProps) => {
     fetchUser();
   }, [userId]);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading) return <p className="text-gray-500 text-center">Loading...</p>;
+  if (error) return <p className="text-red-500 text-center">{error}</p>;
 
   return (
-    <div>
-      <img src={user?.avatar} alt="User Avatar" />
-      <h2>{user?.name}</h2>
-      <p>{user?.email}</p>
+    <div className="p-4 sm:p-6 flex flex-col items-center bg-white shadow-md rounded-lg">
+      <img
+        src={user?.avatar}
+        alt="User Avatar"
+        className="w-24 h-24 rounded-full border-2 border-gray-300"
+      />
+      <h2 className="text-xl font-semibold mt-3">{user?.name}</h2>
+      <p className="text-gray-600">{user?.email}</p>
     </div>
   );
 };
