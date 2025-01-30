@@ -28,6 +28,10 @@ const PizzaList = () => {
     fetchPizzas();
   }, []);
 
+  const handleAddToCart = (pizza: Pizza) => {
+    console.log(`Added ${pizza.name} to cart`);
+  };
+
   if (loading) return <p className="text-gray-500 text-center">Loading pizzas...</p>;
   if (error) return <p className="text-red-500 text-center">{error}</p>;
 
@@ -39,6 +43,12 @@ const PizzaList = () => {
           <div key={pizza.id} className="p-4 bg-white shadow-md rounded-lg">
             <h3 className="text-lg font-semibold">{pizza.name}</h3>
             <p className="text-gray-600">${pizza.price.toFixed(2)}</p>
+            <button
+              className="mt-3 w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition"
+              onClick={() => handleAddToCart(pizza)}
+            >
+              Add to Cart
+            </button>
           </div>
         ))}
       </div>
