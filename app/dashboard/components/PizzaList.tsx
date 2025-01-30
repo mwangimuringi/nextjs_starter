@@ -33,24 +33,41 @@ const PizzaList = () => {
   }, [pizzas]);
 
   if (loading)
-    return <p className="text-gray-500 text-center">Loading pizzas...</p>;
-  if (error) return <p className="text-red-500 text-center">{error}</p>;
+    return (
+      <p className="text-gray-500 text-center" role="status">
+        Loading pizzas...
+      </p>
+    );
+  if (error)
+    return (
+      <p className="text-red-500 text-center" role="alert">
+        {error}
+      </p>
+    );
 
   return (
-    <div className="p-4 sm:p-6">
-      <h2 className="text-2xl font-bold text-center mb-4">Pizza Menu</h2>
+    <section className="p-4 sm:p-6" aria-labelledby="pizza-menu">
+      <h2 id="pizza-menu" className="text-2xl font-bold text-center mb-4">
+        Pizza Menu
+      </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {sortedPizzas.map((pizza) => (
-          <div
+          <article
             key={pizza.id}
             className="p-4 bg-white shadow-md rounded-lg flex flex-col items-center"
+            aria-labelledby={`pizza-${pizza.id}`}
           >
-            <h3 className="text-lg font-semibold text-center">{pizza.name}</h3>
+            <h3
+              id={`pizza-${pizza.id}`}
+              className="text-lg font-semibold text-center"
+            >
+              {pizza.name}
+            </h3>
             <p className="text-gray-600">${pizza.price.toFixed(2)}</p>
-          </div>
+          </article>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
