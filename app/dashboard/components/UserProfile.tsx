@@ -8,6 +8,7 @@ type User = {
   id: string;
   name: string;
   email: string;
+  avatar: string;
 };
 
 const UserProfile = ({ userId }: UserProfileProps) => {
@@ -35,7 +36,13 @@ const UserProfile = ({ userId }: UserProfileProps) => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
-  return <div>User Profile: {user?.name}</div>;
+  return (
+    <div>
+      <img src={user?.avatar} alt="User Avatar" />
+      <h2>{user?.name}</h2>
+      <p>{user?.email}</p>
+    </div>
+  );
 };
 
 export default UserProfile;
