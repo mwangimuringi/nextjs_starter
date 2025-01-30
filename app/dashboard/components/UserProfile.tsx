@@ -33,14 +33,14 @@ const UserProfile = ({ userId }: UserProfileProps) => {
     fetchUser();
   }, [userId]);
 
-  if (loading) return <p className="text-gray-500 text-center">Loading...</p>;
+  if (loading) return <p className="text-gray-500 text-center">Loading profile...</p>;
   if (error) return <p className="text-red-500 text-center">{error}</p>;
 
   return (
     <div className="p-4 sm:p-6 flex flex-col items-center bg-white shadow-md rounded-lg">
       <img
         src={user?.avatar}
-        alt="User Avatar"
+        alt={`${user?.name}'s avatar`}
         className="w-24 h-24 rounded-full border-2 border-gray-300"
       />
       <h2 className="text-xl font-semibold mt-3">{user?.name}</h2>
