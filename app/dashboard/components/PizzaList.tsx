@@ -37,12 +37,15 @@ const PizzaList = () => {
   if (error) return <p className="text-red-500 text-center">{error}</p>;
 
   return (
-    <div className="p-6">
+    <div className="p-4 sm:p-6">
       <h2 className="text-2xl font-bold text-center mb-4">Pizza Menu</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {sortedPizzas.map((pizza) => (
-          <div key={pizza.id} className="p-4 bg-white shadow-md rounded-lg">
-            <h3 className="text-lg font-semibold">{pizza.name}</h3>
+          <div
+            key={pizza.id}
+            className="p-4 bg-white shadow-md rounded-lg flex flex-col items-center"
+          >
+            <h3 className="text-lg font-semibold text-center">{pizza.name}</h3>
             <p className="text-gray-600">${pizza.price.toFixed(2)}</p>
           </div>
         ))}
