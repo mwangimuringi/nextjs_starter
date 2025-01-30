@@ -13,6 +13,16 @@ const Cart = () => {
     { id: "2", name: "Margherita Pizza", price: 10, quantity: 2 },
   ]);
 
+  const updateQuantity = (id: string, change: number) => {
+    setCart((prevCart) =>
+      prevCart
+        .map((item) =>
+          item.id === id ? { ...item, quantity: item.quantity + change } : item
+        )
+        .filter((item) => item.quantity > 0)
+    );
+  };
+
   const totalPrice = cart.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
@@ -25,6 +35,8 @@ const Cart = () => {
         {cart.map((item) => (
           <li key={item.id}>
             {item.name} - ${item.price} x {item.quantity}
+            <button onClick={() => updateQuantity(item.id, 1)}>+</button>
+            <button onClick={() => updateQuantity(item.id, -1)}>-</button>
           </li>
         ))}
       </ul>
