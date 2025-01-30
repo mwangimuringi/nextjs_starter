@@ -28,19 +28,20 @@ const PizzaList = () => {
     fetchPizzas();
   }, []);
 
-  if (loading) return <p>Loading pizzas...</p>;
-  if (error) return <p className="text-red-500">{error}</p>;
+  if (loading) return <p className="text-gray-500 text-center">Loading pizzas...</p>;
+  if (error) return <p className="text-red-500 text-center">{error}</p>;
 
   return (
-    <div>
-      <h2 className="text-xl font-semibold">Pizza Menu</h2>
-      <ul>
+    <div className="p-6">
+      <h2 className="text-2xl font-bold text-center mb-4">Pizza Menu</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {pizzas.map((pizza) => (
-          <li key={pizza.id}>
-            {pizza.name} - ${pizza.price.toFixed(2)}
-          </li>
+          <div key={pizza.id} className="p-4 bg-white shadow-md rounded-lg">
+            <h3 className="text-lg font-semibold">{pizza.name}</h3>
+            <p className="text-gray-600">${pizza.price.toFixed(2)}</p>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
