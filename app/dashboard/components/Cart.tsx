@@ -29,8 +29,13 @@ const Cart = () => {
   );
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-xl font-semibold mb-4">Shopping Cart</h2>
+    <section
+      className="p-6 bg-white rounded-lg shadow-md max-w-md mx-auto"
+      aria-labelledby="cart-title"
+    >
+      <h2 id="cart-title" className="text-xl font-semibold mb-4">
+        Shopping Cart
+      </h2>
       <ul>
         {cart.map((item) => (
           <li key={item.id} className="flex justify-between items-center mb-2">
@@ -39,14 +44,14 @@ const Cart = () => {
             </span>
             <div>
               <button
-                onClick={() => updateQuantity(item.id, 1)}
                 className="px-2 py-1 bg-green-500 text-white rounded"
+                onClick={() => updateQuantity(item.id, 1)}
               >
                 +
               </button>
               <button
-                onClick={() => updateQuantity(item.id, -1)}
                 className="px-2 py-1 bg-red-500 text-white rounded ml-2"
+                onClick={() => updateQuantity(item.id, -1)}
               >
                 -
               </button>
@@ -55,7 +60,7 @@ const Cart = () => {
         ))}
       </ul>
       <p className="mt-4 font-bold">Total: ${totalPrice.toFixed(2)}</p>
-    </div>
+    </section>
   );
 };
 
