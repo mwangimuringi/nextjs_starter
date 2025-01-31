@@ -1,5 +1,7 @@
+import { useState } from "react";
+
 const Notification = () => {
-    const [notifications, setNotifications] = useState<NotificationItem[]>([
+    const [notifications, setNotifications] = useState<Notification[]>([
       { id: 1, message: "New order received!", read: false },
       { id: 2, message: "Your pizza is being prepared", read: false },
     ]);
@@ -10,6 +12,10 @@ const Notification = () => {
           notification.id === id ? { ...notification, read: true } : notification
         )
       );
+    };
+  
+    const clearAll = () => {
+      setNotifications([]);
     };
   
     return (
@@ -25,6 +31,7 @@ const Notification = () => {
             </li>
           ))}
         </ul>
+        <button onClick={clearAll}>Clear All</button>
       </div>
     );
   };
