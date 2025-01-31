@@ -19,22 +19,34 @@ const Notification = () => {
     };
   
     return (
-      <div>
-        <h2>Notifications</h2>
-        <ul>
-          {notifications.map((notification) => (
-            <li key={notification.id}>
-              {notification.message} {notification.read ? "(Read)" : "(Unread)"}
-              {!notification.read && (
-                <button onClick={() => markAsRead(notification.id)}>Mark as Read</button>
-              )}
-            </li>
-          ))}
-        </ul>
-        <button onClick={clearAll}>Clear All</button>
-      </div>
-    );
-  };
-  
-  export default Notification;
-  
+        <div className="p-6 bg-white rounded-lg shadow-md">
+          <h2 className="text-xl font-semibold mb-4">Notifications</h2>
+          <ul>
+            {notifications.map((notification) => (
+              <li
+                key={notification.id}
+                className={`p-2 rounded ${
+                  notification.read ? "bg-gray-200" : "bg-blue-100"
+                }`}
+              >
+                {notification.message}
+                {!notification.read && (
+                  <button
+                    onClick={() => markAsRead(notification.id)}
+                    className="ml-2 text-sm text-blue-500 underline"
+                  >
+                    Mark as Read
+                  </button>
+                )}
+              </li>
+            ))}
+          </ul>
+          <button
+            onClick={clearAll}
+            className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
+          >
+            Clear All
+          </button>
+        </div>
+      );
+    }      
