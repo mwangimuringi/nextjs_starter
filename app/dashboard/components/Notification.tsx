@@ -1,12 +1,22 @@
-import React from 'react'
+import { useState } from "react";
+
+type NotificationItem = {
+  id: number;
+  message: string;
+  read: boolean;
+};
 
 const Notification = () => {
+  const [notifications, _setNotifications] = useState<NotificationItem[]>([
+    { id: 1, message: "New order received!", read: false },
+    { id: 2, message: "Your pizza is being prepared", read: false },
+  ]);
+
   return (
     <div>
-      This is a notification component
-      <button>Click me</button>
+      <h2>Notifications ({notifications.length})</h2>
     </div>
-  )
-}
+  );
+};
 
-export default Notification
+export default Notification;
