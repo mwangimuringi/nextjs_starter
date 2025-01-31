@@ -18,13 +18,13 @@ const useNotifications = () => {
 
   const markAsRead = (id: number) => {
     setNotifications((prev) =>
-      prev.map((notif) =>
-        notif.id === id ? { ...notif, read: true } : notif
-      )
+      prev.map((notif) => (notif.id === id ? { ...notif, read: true } : notif))
     );
-  };  
+  };
 
-  return { notifications, addNotification, markAsRead };
+  const clearNotifications = () => setNotifications([]);
+
+  return { notifications, addNotification, markAsRead, clearNotifications };
 };
 
 export default useNotifications;
