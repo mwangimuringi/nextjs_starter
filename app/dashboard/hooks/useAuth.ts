@@ -1,4 +1,15 @@
-import { useState } from "react";
+import { useEffect } from "react";
+
+useEffect(() => {
+  const storedUser = localStorage.getItem("user");
+  if (storedUser) {
+    setUser(JSON.parse(storedUser));
+  }
+}, []);
+
+useEffect(() => {
+  localStorage.setItem("user", JSON.stringify(user));
+}, [user]);
 
 const useAuth = () => {
   const [user, setUser] = useState<null | { id: string; name: string }>(null);
