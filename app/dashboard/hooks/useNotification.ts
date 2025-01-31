@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 type Notification = {
   id: number;
@@ -8,6 +8,17 @@ type Notification = {
 
 const useNotifications = () => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
+
+  useEffect(() => {
+    const storedNotifs = localStorage.getItem("notifications");
+    if (storedNotifs) {
+      setNotifications(JSON.parse(storedNotifs));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("notifications", JSON.stringify(notifications));
+  }, [notifications]);
 
   const addNotification = (message: string) => {
     setNotifications((prev) => [
@@ -22,7 +33,10 @@ const useNotifications = () => {
     );
   };
 
-  const clearNotifications = () => setNotifications([]);
+  const clearNotifications = () => {
+    setNotifications([]);
+    localStorage.removeItem("notifications");
+  };
 
   return { notifications, addNotification, markAsRead, clearNotifications };
 };
