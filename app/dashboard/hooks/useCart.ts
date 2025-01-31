@@ -39,9 +39,20 @@ const useCart = () => {
 
   const getTotalPrice = () => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
-  };  
+  };
 
-  return { cart, addToCart, removeFromCart, updateQuantity };
+  const clearCart = () => {
+    setCart([]);
+  };
+
+  return {
+    cart,
+    addToCart,
+    removeFromCart,
+    updateQuantity,
+    getTotalPrice,
+    clearCart,
+  };
 };
 
 export default useCart;
