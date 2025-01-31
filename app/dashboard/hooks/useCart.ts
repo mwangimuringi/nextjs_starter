@@ -25,7 +25,11 @@ const useCart = () => {
       });
     };
   
-    return { cart, addToCart };
+    const removeFromCart = (id: number) => {
+      setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+    };
+  
+    return { cart, addToCart, removeFromCart };
   };
   
   export default useCart;  
