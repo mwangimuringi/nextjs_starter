@@ -7,9 +7,16 @@ type Notification = {
 };
 
 const useNotifications = () => {
-  const [notifications, _setNotifications] = useState<Notification[]>([]);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
 
-  return { notifications };
+  const addNotification = (message: string) => {
+    setNotifications((prev) => [
+      ...prev,
+      { id: Date.now(), message, read: false },
+    ]);
+  };
+
+  return { notifications, addNotification };
 };
 
 export default useNotifications;
