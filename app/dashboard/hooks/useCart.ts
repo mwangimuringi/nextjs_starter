@@ -37,6 +37,10 @@ const useCart = () => {
     );
   };
 
+  const getTotalPrice = () => {
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  };  
+
   return { cart, addToCart, removeFromCart, updateQuantity };
 };
 
