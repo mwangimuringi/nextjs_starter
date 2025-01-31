@@ -16,7 +16,15 @@ const useNotifications = () => {
     ]);
   };
 
-  return { notifications, addNotification };
+  const markAsRead = (id: number) => {
+    setNotifications((prev) =>
+      prev.map((notif) =>
+        notif.id === id ? { ...notif, read: true } : notif
+      )
+    );
+  };  
+
+  return { notifications, addNotification, markAsRead };
 };
 
 export default useNotifications;
