@@ -1,7 +1,16 @@
-import
+import { useState } from "react";
 
 const API_BASE_URL = "https://api.example.com";
 export { API_BASE_URL };
+
+const AUTH_ENDPOINTS = {
+    LOGIN: "/auth/login",
+    SIGNUP: "/auth/signup",
+    LOGOUT: "/auth/logout",
+    RESET_PASSWORD: "/auth/reset-password",
+  };
+  export { AUTH_ENDPOINTS };
+  
 
 export const ROUTES = {
   HOME: "/",
