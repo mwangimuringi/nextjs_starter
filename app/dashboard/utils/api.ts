@@ -29,4 +29,4 @@ const get = async (endpoint: string) => {
     });
   };
   
-export { apiRequest, get, post };
+  export { get, post, del };
