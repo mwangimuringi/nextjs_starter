@@ -11,7 +11,12 @@ const AUTH_ENDPOINTS = {
   };
   export { AUTH_ENDPOINTS };
   
-
+  const USER_ROLES = {
+    ADMIN: "admin",
+    USER: "user",
+  };
+  export { USER_ROLES };
+  
 export const ROUTES = {
   HOME: "/",
   LOGIN: "/login",
