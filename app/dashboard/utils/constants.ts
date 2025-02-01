@@ -60,6 +60,12 @@ const PAGINATION = {
   };
   export { PAGINATION };
   
+  const THEME_COLORS = {
+    PRIMARY: "#6200EE",
+    SECONDARY: "#03DAC6",
+  };
+  export { THEME_COLORS };
+  
 export const NOTIFICATION_TYPES = {
   SUCCESS: "success",
   ERROR: "error",
