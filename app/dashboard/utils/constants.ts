@@ -54,6 +54,12 @@ export const ROUTES = {
   NOTIFICATIONS: "/notifications",
 };
 
+const PAGINATION = {
+    DEFAULT_PAGE: 1,
+    DEFAULT_LIMIT: 10,
+  };
+  export { PAGINATION };
+  
 export const NOTIFICATION_TYPES = {
   SUCCESS: "success",
   ERROR: "error",
