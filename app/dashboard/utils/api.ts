@@ -9,4 +9,12 @@ const get = async (endpoint: string) => {
     return apiRequest(endpoint, { method: "GET" });
   };
   
-export { apiRequest, get };
+  const post = async (endpoint: string, body: object) => {
+    return apiRequest(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+  };
+  
+export { apiRequest, get, post };
