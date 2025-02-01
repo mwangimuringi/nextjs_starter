@@ -13,6 +13,10 @@ const apiRequest = async (endpoint: string, options = {}) => {
     }
   };  
 
+  const del = async (endpoint: string) => {
+    return apiRequest(endpoint, { method: "DELETE" });
+  };  
+
 const get = async (endpoint: string) => {
     return apiRequest(endpoint, { method: "GET" });
   };
