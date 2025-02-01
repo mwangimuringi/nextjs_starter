@@ -17,6 +17,27 @@ const AUTH_ENDPOINTS = {
   };
   export { USER_ROLES };
   
+  const PRODUCT_STATUS = {
+    ACTIVE: "active",
+    INACTIVE: "inactive",
+    SOLD_OUT: "sold-out",
+    BACK_ORDERED: "back-ordered",
+    DELETED: "deleted",
+    OUT_OF_STOCK: "out-of-stock",
+    LOW_QUANTITY: "low-quantity",
+    EXPIRED: "expired",
+    PENDING: "pending",
+  };
+
+  const HTTP_STATUS = {
+    OK: 200,
+    BAD_REQUEST: 400,
+    UNAUTHORIZED: 401,
+    NOT_FOUND: 404,
+    INTERNAL_SERVER_ERROR: 500,
+  };
+  export { HTTP_STATUS };
+  
 export const ROUTES = {
   HOME: "/",
   LOGIN: "/login",
