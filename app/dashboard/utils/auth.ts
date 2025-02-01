@@ -12,4 +12,8 @@ const signup = async (name: string, email: string, password: string) => {
     return post("/auth/logout", {});
   };  
   
+  const resetPassword = async (email: string) => {
+    return post("/auth/reset-password", { email });
+  };
+  
 export { login };
