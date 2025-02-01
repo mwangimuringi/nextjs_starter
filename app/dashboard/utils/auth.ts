@@ -20,4 +20,4 @@ const signup = async (name: string, email: string, password: string) => {
     return post("/auth/reset-password", { email });
   };
   
-export { login };
+  export { login, signup, logout, resetPassword };
