@@ -5,4 +5,8 @@ const apiRequest = async (endpoint: string, options = {}) => {
   return response.json();
 };
 
-export { apiRequest };
+const get = async (endpoint: string) => {
+    return apiRequest(endpoint, { method: "GET" });
+  };
+  
+export { apiRequest, get };
