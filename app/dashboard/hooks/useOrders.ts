@@ -1,3 +1,9 @@
-const API_BASE_URL = "https://api.example.com";
+import { useState } from "react";
 
-export { API_BASE_URL };
+const useOrder = () => {
+  const [order, setOrder] = useState(null);
+
+  return { order, setOrder };
+};
+
+export default useOrder;
