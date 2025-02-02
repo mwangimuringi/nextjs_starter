@@ -4,6 +4,8 @@ type OrderProps = {
     id: string;
     status: string;
     total: number;
+    date: string;
+    customer: string;
   };
   
   const getStatusColor = (status: string) => {
@@ -19,16 +21,18 @@ type OrderProps = {
     }
   };
   
-  const OrderCard: React.FC<OrderProps> = ({ id, status, total }) => {
+  const OrderCard: React.FC<OrderProps> = ({ id, status, total, date, customer }) => {
     return (
       <div className="order-card p-4 border rounded-lg shadow-md bg-white">
         <p className="text-gray-700 font-semibold">Order ID: {id}</p>
+        <p className="text-sm text-gray-500">Customer: {customer}</p>
+        <p className="text-sm text-gray-500">Date: {date}</p>
         <span className={`px-2 py-1 rounded-md text-xs font-bold ${getStatusColor(status)}`}>
           {status}
         </span>
         <p className="text-lg font-bold text-green-700">Total: ${total.toFixed(2)}</p>
       </div>
     );
-  };  
+  };
 
 export default OrderCard;
