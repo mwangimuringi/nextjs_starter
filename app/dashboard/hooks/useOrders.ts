@@ -6,8 +6,12 @@ const useOrder = () => {
     const createOrder = (orderData: any) => {
       setOrder(orderData);
     };
-  
-    return { order, setOrder, createOrder };
+    
+    const updateOrder = (updatedData: any) => {
+        setOrder((prevOrder) => ({ ...prevOrder, ...updatedData }));
+      };
+      
+      return { order, setOrder, createOrder, updateOrder };
   };  
 
 export default useOrder;
