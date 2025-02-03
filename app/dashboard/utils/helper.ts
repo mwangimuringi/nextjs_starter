@@ -19,3 +19,11 @@ export const capitalize = (str: string): string => {
     return Math.random().toString(36).substring(2, 2 + length);
   };  
   
+  export const debounce = (func: (...args: any[]) => void, delay = 300) => {
+    let timer: NodeJS.Timeout;
+    return (...args: any[]) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => func(...args), delay);
+    };
+  };
+  
