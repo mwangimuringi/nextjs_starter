@@ -1,4 +1,3 @@
-import { Product } from "../types";
 
 const getRandomInt = (min: number, max: number) => {
   min = Math.ceil(min);
