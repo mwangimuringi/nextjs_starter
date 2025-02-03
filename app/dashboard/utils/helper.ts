@@ -1,8 +1,8 @@
-
-const getRandomInt = (min: number, max: number) => {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
-
-export { getRandomInt };
+export const capitalize = (str: string): string => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+  
+  export const formatCurrency = (amount: number): string => {
+    return `$${amount.toFixed(2)}`;
+  };
+  
