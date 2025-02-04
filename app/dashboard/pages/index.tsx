@@ -1,17 +1,18 @@
-import React from "react";
-import { Layout } from "lucide-react";
-
-const stats = [
-  { label: "Total Orders", value: 120 },
-  { label: "Revenue", value: "$45,000" },
-];
-
-const recentOrders = [
-  { id: "#1234", customer: "John Doe", total: "$120", status: "Completed" },
-  { id: "#1235", customer: "Jane Smith", total: "$85", status: "Pending" },
-];
+import { useEffect, useState } from "react";
 
 const IndexPage = () => {
+  const [orders, setOrders] = useState(recentOrders);
+
+  useEffect(() => {
+    // Simulating API call
+    setTimeout(() => {
+      setOrders([
+        ...recentOrders,
+        { id: "#1236", customer: "Mike Ross", total: "$75", status: "Shipped" },
+      ]);
+    }, 2000);
+  }, []);
+
   return (
     <Layout>
       <div className="p-6">
@@ -27,37 +28,8 @@ const IndexPage = () => {
             </div>
           ))}
         </div>
-        <div className="mt-6">
-          <h2 className="text-lg font-semibold">Recent Orders</h2>
-          <ul className="mt-2">
-            {recentOrders.map((order) => (
-              <li
-                key={order.id}
-                className="flex justify-between p-4 border rounded-lg shadow-md bg-gray-50"
-              >
-                <span>{order.customer}</span>
-                <span>{order.total}</span>
-                <span className="text-sm text-gray-500">{order.status}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <OrderList orders={orders} />
       </div>
     </Layout>
   );
 };
-
-const OrderList = ({ orders }: { orders: typeof recentOrders }) => (
-  <div className="mt-6">
-    <h2 className="text-lg font-semibold">Recent Orders</h2>
-    <ul className="mt-2">
-      {orders.map((order) => (
-        <li key={order.id} className="flex justify-between p-4 border rounded-lg shadow-md bg-gray-50">
-          <span>{order.customer}</span>
-          <span>{order.total}</span>
-          <span className="text-sm text-gray-500">{order.status}</span>
-        </li>
-      ))}
-    </ul>
-  </div>
-);
