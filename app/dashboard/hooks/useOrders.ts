@@ -38,7 +38,7 @@ const useOrder = () => {
     setOrder(null);
     setError(null);
   };
-
+  
   const updateOrderStatus = (status: string) => {
     if (!Object.values(ORDER_STATUS).includes(status as any)) {
       setError("Invalid status");
