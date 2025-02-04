@@ -6,6 +6,14 @@ export const deepClone = <T>(obj: T): T => {
   return JSON.parse(JSON.stringify(obj));
 };
 
+
+export const formatNumber = (amount: number): string => {
+  return amount.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
+};
+
 export const formatCurrency = (amount: number): string => {
   return `$${amount.toFixed(2)}`;
 };
