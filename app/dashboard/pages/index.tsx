@@ -46,3 +46,18 @@ const IndexPage = () => {
     </Layout>
   );
 };
+
+const OrderList = ({ orders }: { orders: typeof recentOrders }) => (
+  <div className="mt-6">
+    <h2 className="text-lg font-semibold">Recent Orders</h2>
+    <ul className="mt-2">
+      {orders.map((order) => (
+        <li key={order.id} className="flex justify-between p-4 border rounded-lg shadow-md bg-gray-50">
+          <span>{order.customer}</span>
+          <span>{order.total}</span>
+          <span className="text-sm text-gray-500">{order.status}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
