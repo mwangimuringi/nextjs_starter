@@ -11,3 +11,7 @@ export const capitalize = (str: string): string => {
     return JSON.parse(JSON.stringify(obj));
   };
   
+  export const generateId = (length = 8): string => {
+    return Math.random().toString(36).substring(2, 2 + length);
+  };
+  
