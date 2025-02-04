@@ -7,3 +7,7 @@ export const capitalize = (str: string): string => {
     return d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
   };
   
+  export const deepClone = <T>(obj: T): T => {
+    return JSON.parse(JSON.stringify(obj));
+  };
+  
