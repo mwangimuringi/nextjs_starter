@@ -19,8 +19,15 @@ const MenuPage = () => {
           <h2 className="text-lg font-semibold">Categories</h2>
           <ul className="flex space-x-4 mt-2">
             {pizzaCategories.map((category) => (
-              <li key={category} className="px-4 py-2 bg-gray-200 rounded">
-                {category}
+              // Added hover effects and improved spacing
+
+              <li
+                key={pizza.id}
+                className="p-4 border rounded-lg shadow-md flex justify-between bg-white hover:shadow-lg transition"
+              >
+                <p className="font-medium text-gray-800">
+                  {pizza.name} - {pizza.price}
+                </p>
               </li>
             ))}
           </ul>
