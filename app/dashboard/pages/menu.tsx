@@ -7,6 +7,7 @@ const pizzas = [
   { id: 1, name: "Margherita", price: "$8", category: "Veg" },
   { id: 2, name: "Pepperoni", price: "$10", category: "Non-Veg" },
   { id: 3, name: "BBQ Chicken", price: "$12", category: "Special" },
+  { id: 4, name: "Four Cheese", price: "$11", category: "Cheese Burst" },
 ];
 
 const MenuPage = () => {
@@ -23,18 +24,21 @@ const MenuPage = () => {
         <h1 className="text-2xl font-bold">Menu</h1>
         <p className="text-gray-600">Browse our delicious pizzas.</p>
 
+        {/* Category Filters */}
         <div className="mt-4">
           <h2 className="text-lg font-semibold">Categories</h2>
-          <ul className="flex space-x-4 mt-2">
+          <ul className="flex flex-wrap gap-2 justify-center">
             {pizzaCategories.map((category) => (
               <li
                 key={category}
-                className={`px-4 py-2 rounded cursor-pointer ${
+                className={`px-4 py-2 rounded cursor-pointer text-sm sm:text-base ${
                   selectedCategory === category
                     ? "bg-blue-500 text-white"
                     : "bg-gray-200"
                 }`}
                 onClick={() => setSelectedCategory(category)}
+                role="button"
+                aria-label={`Filter ${category} pizzas`}
               >
                 {category}
               </li>
@@ -42,6 +46,7 @@ const MenuPage = () => {
           </ul>
         </div>
 
+        {/* Pizza List */}
         <div className="mt-6">
           <h2 className="text-lg font-semibold">Available Pizzas</h2>
           <ul className="space-y-3">
