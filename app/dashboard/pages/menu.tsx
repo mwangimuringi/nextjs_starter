@@ -53,6 +53,9 @@ const MenuPage = () => {
                 <p className="font-medium text-gray-800">
                   {pizza.name} - {pizza.price}
                 </p>
+                <button className="bg-green-500 text-white px-3 py-1 rounded">
+                  Add to Cart
+                </button>
               </li>
             ))}
           </ul>
