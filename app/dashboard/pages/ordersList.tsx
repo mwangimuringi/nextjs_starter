@@ -10,4 +10,6 @@ const OrderList = ({ orders }: { orders: typeof orders }) => (
       ))}
     </ul>
   );
+
+  export default OrderList;
   
