@@ -1,6 +1,7 @@
+import { useState } from "react";
 import Layout from "@/app/layout";
 
-const pizzaCategories = ["Veg", "Non-Veg", "Cheese Burst", "Special"];
+const pizzaCategories = ["All", "Veg", "Non-Veg", "Cheese Burst", "Special"];
 
 const pizzas = [
   { id: 1, name: "Margherita", price: "$8", category: "Veg" },
@@ -9,6 +10,13 @@ const pizzas = [
 ];
 
 const MenuPage = () => {
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  const filteredPizzas =
+    selectedCategory === "All"
+      ? pizzas
+      : pizzas.filter((pizza) => pizza.category === selectedCategory);
+
   return (
     <Layout>
       <div className="p-6">
@@ -19,15 +27,16 @@ const MenuPage = () => {
           <h2 className="text-lg font-semibold">Categories</h2>
           <ul className="flex space-x-4 mt-2">
             {pizzaCategories.map((category) => (
-              // Added hover effects and improved spacing
-
               <li
-                key={pizza.id}
-                className="p-4 border rounded-lg shadow-md flex justify-between bg-white hover:shadow-lg transition"
+                key={category}
+                className={`px-4 py-2 rounded cursor-pointer ${
+                  selectedCategory === category
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200"
+                }`}
+                onClick={() => setSelectedCategory(category)}
               >
-                <p className="font-medium text-gray-800">
-                  {pizza.name} - {pizza.price}
-                </p>
+                {category}
               </li>
             ))}
           </ul>
@@ -36,12 +45,12 @@ const MenuPage = () => {
         <div className="mt-6">
           <h2 className="text-lg font-semibold">Available Pizzas</h2>
           <ul className="space-y-3">
-            {pizzas.map((pizza) => (
+            {filteredPizzas.map((pizza) => (
               <li
                 key={pizza.id}
-                className="p-4 border rounded-lg shadow-md flex justify-between"
+                className="p-4 border rounded-lg shadow-md flex justify-between bg-white hover:shadow-lg transition"
               >
-                <p className="font-medium">
+                <p className="font-medium text-gray-800">
                   {pizza.name} - {pizza.price}
                 </p>
               </li>
