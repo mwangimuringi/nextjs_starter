@@ -1,3 +1,11 @@
+import { useEffect, useState } from "react";
+import OrderList from "./ordersList";
+
+const ordersData = [
+  { id: "#1234", customer: "John Doe", total: "$100", status: "Completed" },
+  { id: "#1235", customer: "Jane Smith", total: "$50", status: "Pending" },
+];
+
 const OrdersPage = () => {
     const [orders, setOrders] = useState<typeof ordersData>([]);
     const [filter, setFilter] = useState("All");
