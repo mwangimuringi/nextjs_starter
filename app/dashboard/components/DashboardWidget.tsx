@@ -1,11 +1,12 @@
-import React from 'react';
-import styles from './DashboardWidget.module.css';
+import React from "react";
 
 const DashboardWidget: React.FC = () => {
   return (
-    <div className={styles['dashboard-widget']}>
-      <h2>Dashboard Widget</h2>
-      <p>This is a regenerated component for the dashboard.</p>
+    <div className="bg-white p-6 rounded-lg shadow-md">
+      <h2 className="text-lg font-semibold">Dashboard Widget</h2>
+      <p className="text-gray-600">
+        This is a regenerated component for the dashboard.
+      </p>
     </div>
   );
 };
