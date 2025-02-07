@@ -1,4 +1,4 @@
-"use client";
+"use client"; // Add this here to mark the rest as client-side
 
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -22,15 +22,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { isSignedIn } = useUser();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (isSignedIn) {
-      router.push("/dashboard"); // Redirects signed-in users to the dashboard
-    }
-  }, [isSignedIn, router]);
-
   return (
     <ClerkProvider>
       <html lang="en" className="h-full bg-gray-100">
@@ -59,20 +50,36 @@ export default function RootLayout({
           </header>
 
           <main className="p-6">
-            <SignedIn>
-              <DashboardWidget />
-            </SignedIn>
-            <SignedOut>
-              <div className="text-center mt-10">
-                <h2 className="text-2xl font-bold text-gray-700">
-                  Please sign in to access the dashboard
-                </h2>
-              </div>
-              {children}
-            </SignedOut>
+            <RootContent />
           </main>
         </body>
       </html>
     </ClerkProvider>
   );
 }
+
+const RootContent = () => {
+  const { isSignedIn } = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isSignedIn) {
+      router.push("/dashboard"); // Redirects signed-in users to the dashboard
+    }
+  }, [isSignedIn, router]);
+
+  return (
+    <>
+      <SignedIn>
+        <DashboardWidget />
+      </SignedIn>
+      <SignedOut>
+        <div className="text-center mt-10">
+          <h2 className="text-2xl font-bold text-gray-700">
+            Please sign in to access the dashboard
+          </h2>
+        </div>
+      </SignedOut>
+    </>
+  );
+};
