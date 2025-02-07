@@ -28,11 +28,11 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={`${inter.className} h-full`}>
-          <header className="flex justify-between items-center p-4 bg-white shadow">
+          <header className="flex flex-wrap items-center justify-between p-4 bg-white shadow-md">
             <h1 className="text-lg font-semibold text-gray-700">
               Admin Dashboard
             </h1>
-            <div>
+            <div className="flex gap-2">
               <SignedOut>
                 <SignInButton>
                   <button className="px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600">
@@ -40,7 +40,7 @@ export default function RootLayout({
                   </button>
                 </SignInButton>
                 <SignUpButton>
-                  <button className="ml-2 px-4 py-2 bg-gray-300 text-black rounded-md shadow-md hover:bg-gray-400">
+                  <button className="px-4 py-2 bg-gray-300 text-black rounded-md shadow-md hover:bg-gray-400">
                     Sign Up
                   </button>
                 </SignUpButton>
@@ -50,6 +50,7 @@ export default function RootLayout({
               </SignedIn>
             </div>
           </header>
+
           {children}
         </body>
       </html>
