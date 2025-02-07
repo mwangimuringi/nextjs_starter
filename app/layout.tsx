@@ -1,4 +1,4 @@
-"use client"; // Add this here to mark the rest as client-side
+"use client"; // Add this here to mark the entire file as client-side
 
 import { Inter } from "next/font/google";
 import "./globals.css";
