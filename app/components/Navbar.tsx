@@ -1,4 +1,13 @@
+"use client";
 
+import Link from "next/link";
+import React from "react";
+import { useUser, useAuth } from "@clerk/nextjs";
+import { Button } from "./ui/button";
+import { Skeleton } from "./ui/skeleton";
+
+const Navbar = () => {
+  const { isLoaded, isSignedIn, signOut } = useAuth();
 
   return (
     <header className="sticky top-0 inset-x-0 bg-white/50 backdrop-blur-md h-14 w-full border-b border-border px-4 md:px-10">
