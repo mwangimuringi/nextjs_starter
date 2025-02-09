@@ -7,14 +7,22 @@ const handleResponse = async (response: Response) => {
   return data;
 };
 
+const getAuthHeaders = (token: string | null) => {
+  return token ? { Authorization: `Bearer ${token}` } : {};
+};
+
 export const fetchData = async (
   endpoint: string,
+  token?: string,
   options: RequestInit = {}
 ) => {
   try {
     const response = await fetch(`${BASE_URL}${endpoint}`, {
       method: "GET",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        ...getAuthHeaders(token || ""),
+      },
       ...options,
     });
     return await handleResponse(response);
@@ -27,12 +35,16 @@ export const fetchData = async (
 export const postData = async (
   endpoint: string,
   data: object,
+  token?: string,
   options: RequestInit = {}
 ) => {
   try {
     const response = await fetch(`${BASE_URL}${endpoint}`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        ...getAuthHeaders(token || ""),
+      },
       body: JSON.stringify(data),
       ...options,
     });
