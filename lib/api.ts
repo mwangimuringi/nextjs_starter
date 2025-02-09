@@ -1,5 +1,29 @@
 const BASE_URL = "https://api.example.com";
 
+const handleResponse = async (response: Response) => {
+  const data = await response.json();
+  if (!response.ok)
+    throw new Error(data?.message || `API error: ${response.status}`);
+  return data;
+};
+
+export const fetchData = async (
+  endpoint: string,
+  options: RequestInit = {}
+) => {
+  try {
+    const response = await fetch(`${BASE_URL}${endpoint}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      ...options,
+    });
+    return await handleResponse(response);
+  } catch (error) {
+    console.error(`Error in fetchData (${endpoint}):`, error);
+    throw error;
+  }
+};
+
 export const postData = async (
   endpoint: string,
   data: object,
@@ -12,12 +36,9 @@ export const postData = async (
       body: JSON.stringify(data),
       ...options,
     });
-
-    if (!response.ok) throw new Error(`API error: ${response.status}`);
-
-    return await response.json();
+    return await handleResponse(response);
   } catch (error) {
-    console.error("Error posting data:", error);
+    console.error(`Error in postData (${endpoint}):`, error);
     throw error;
   }
 };
