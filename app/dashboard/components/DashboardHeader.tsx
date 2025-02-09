@@ -3,7 +3,7 @@ import { Bell, Menu, Moon, Sun } from "lucide-react";
 
 const DashboardHeader: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [_isMenuOpen, _setIsMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   return (
