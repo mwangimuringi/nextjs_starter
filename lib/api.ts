@@ -1,7 +1,15 @@
 const BASE_URL = "https://api.example.com";
 
-const getAuthHeaders = (token?: string) =>
-  token ? { Authorization: `Bearer ${token}` } : {};
+const getAuthHeaders = (token?: string): HeadersInit => {
+  const headers: HeadersInit = new Headers();
+  headers.set("Content-Type", "application/json");
+
+  if (token) {
+    headers.set("Authorization", `Bearer ${token}`);
+  }
+
+  return headers;
+};
 
 const handleResponse = async (response: Response) => {
   const data = await response.json();
@@ -20,7 +28,7 @@ export const apiRequest = async (
   try {
     const response = await fetch(`${BASE_URL}${endpoint}`, {
       method,
-      headers: { "Content-Type": "application/json", ...getAuthHeaders(token) },
+      headers: getAuthHeaders(token),
       body: data ? JSON.stringify(data) : undefined,
       ...options,
     });
