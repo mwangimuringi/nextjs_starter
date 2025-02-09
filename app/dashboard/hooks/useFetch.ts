@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const useFetch = (
   url: string,
   options: RequestInit = {},
   dependencies: any[] = []
 ) => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState<null | any>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     try {
       const response = await fetch(url, options);
@@ -23,11 +23,11 @@ const useFetch = (
     } finally {
       setLoading(false);
     }
-  };
+  }, [url, JSON.stringify(options)]);
 
   useEffect(() => {
     fetchData();
-  }, [url, JSON.stringify(options), ...dependencies]);
+  }, [fetchData, ...dependencies]);
 
   return { data, loading, error, refetch: fetchData };
 };
