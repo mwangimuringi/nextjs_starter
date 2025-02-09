@@ -1,13 +1,15 @@
 const BASE_URL = "https://api.example.com";
 
-export const fetchData = async (
+export const postData = async (
   endpoint: string,
+  data: object,
   options: RequestInit = {}
 ) => {
   try {
     const response = await fetch(`${BASE_URL}${endpoint}`, {
-      method: "GET",
+      method: "POST",
       headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
       ...options,
     });
 
@@ -15,7 +17,7 @@ export const fetchData = async (
 
     return await response.json();
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error("Error posting data:", error);
     throw error;
   }
 };
