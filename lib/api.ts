@@ -28,6 +28,8 @@ export const apiRequest = async (
   try {
     const response = await fetch(`${BASE_URL}${endpoint}`, {
       method,
+
+
       headers: getAuthHeaders(token),
       body: data ? JSON.stringify(data) : undefined,
       ...options,
@@ -39,6 +41,12 @@ export const apiRequest = async (
     throw error;
   }
 };
+
+export const getData = (
+  endpoint: string,
+  token?: string,
+  options: RequestInit = {}
+) => apiRequest("GET", endpoint, undefined, token, options);
 
 export const fetchData = (
   endpoint: string,
