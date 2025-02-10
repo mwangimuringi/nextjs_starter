@@ -63,6 +63,11 @@ const DashboardOrdersTable: React.FC<Props> = ({ orders }) => {
               <td className="p-3">${order.total.toFixed(2)}</td>
             </tr>
           ))}
+          <tr className="border-b">
+            <td className="p-3 text-center" colSpan={4}>
+              {sortedOrders.length === 0 && "No orders found"}
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
