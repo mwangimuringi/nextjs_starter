@@ -13,6 +13,17 @@ const DashboardHeader: React.FC = () => {
       }`}
     >
       <div className="flex items-center space-x-4">
+        <button
+          onClick={() => _setIsMenuOpen(!_isMenuOpen)}
+          className="p-2 text-gray-600 hover:text-gray-800"
+        >
+          <Menu className="w-5 h-5" />
+        </button>
+        <a href="#" className="text-xl font-bold">
+          Commerce Hub
+        </a>
+      </div>
+      <div className="flex items-center space-x-4">
         <div className="text-xl font-bold">🌟</div>
         <h1 className="text-2xl font-bold">Dashboard</h1>
       </div>

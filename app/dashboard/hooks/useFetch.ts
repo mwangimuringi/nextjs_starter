@@ -29,7 +29,30 @@ const useFetch = (
     fetchData();
   }, [fetchData, ...dependencies]);
 
-  return { data, loading, error, refetch: fetchData };
+  return { data, loading, error };
+  // return [data, loading, error, fetchData];
+  // return { data, loading, error, fetchData };
+  // return { data, loading, error, fetchData };
+  // const [data, setData] = useState<any>(null);
+  // const [loading, setLoading] = useState<boolean>(true);
+  // const [error, setError] = useState<Error | null>(null);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const response = await fetch(url, options);
+  //       if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+
+  //       const result = await response.json();
+  //       setData(result);
+  //     } catch (err) {
+  //       console.error("Fetch error:", err);
+  //       setError(err instanceof Error ? err : new Error("Unknown error"));
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 };
 
 export default useFetch;
