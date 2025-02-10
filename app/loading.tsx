@@ -5,7 +5,6 @@ const Loading = () => {
     return <>
     <Loader />
     </>
-    <div className=""></div>
 };
 
 export default Loading
