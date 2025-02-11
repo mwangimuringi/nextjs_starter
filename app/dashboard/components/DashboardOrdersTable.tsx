@@ -83,6 +83,24 @@ const DashboardOrdersTable: React.FC<Props> = ({ orders }) => {
           View All
         </button>
       </div>
+
+      {/* TODO: Add pagination */}
+      {/* <div className="mt-4 flex justify-center">
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 11a9 9 0 019 9m-15.5 0a9 9 0 01-9-9m9-5H2m15.5 0H7a9 9 0 01-9 9v5m15.5 0v-5a9 9 0 01-9-9m-9-5V2m0 5h.01"
+            />
+          </svg>
     </div>
   );
 };
