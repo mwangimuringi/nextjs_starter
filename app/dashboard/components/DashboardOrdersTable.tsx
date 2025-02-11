@@ -21,7 +21,9 @@ const DashboardOrdersTable: React.FC<Props> = ({ orders }) => {
       if (sortBy === "total") {
         return ascending ? a.total - b.total : b.total - a.total;
       } else if (sortBy === "status") {
-        return ascending ? a.status.localeCompare(b.status) : b.status.localeCompare(a.status);
+        return ascending
+          ? a.status.localeCompare(b.status)
+          : b.status.localeCompare(a.status);
       }
       return 0;
     });
@@ -46,10 +48,16 @@ const DashboardOrdersTable: React.FC<Props> = ({ orders }) => {
           <tr className="bg-gray-100">
             <th className="p-3 text-left">Order ID</th>
             <th className="p-3 text-left">Customer</th>
-            <th className="p-3 text-left cursor-pointer" onClick={() => handleSort("status")}>
+            <th
+              className="p-3 text-left cursor-pointer"
+              onClick={() => handleSort("status")}
+            >
               Status {sortBy === "status" ? (ascending ? "↑" : "↓") : ""}
             </th>
-            <th className="p-3 text-left cursor-pointer" onClick={() => handleSort("total")}>
+            <th
+              className="p-3 text-left cursor-pointer"
+              onClick={() => handleSort("total")}
+            >
               Total {sortBy === "total" ? (ascending ? "↑" : "↓") : ""}
             </th>
           </tr>
@@ -70,6 +78,11 @@ const DashboardOrdersTable: React.FC<Props> = ({ orders }) => {
           </tr>
         </tbody>
       </table>
+      <div className="mt-4 text-center">
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          View All
+        </button>
+      </div>
     </div>
   );
 };
