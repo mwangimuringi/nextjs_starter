@@ -78,10 +78,13 @@ const DashboardOrdersTable: React.FC<Props> = ({ orders }) => {
           </tr>
         </tbody>
       </table>
+
       <div className="mt-4 text-center">
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           View All
         </button>
+
+
       </div>
 
       {/* TODO: Add pagination */}
