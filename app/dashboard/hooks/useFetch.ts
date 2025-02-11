@@ -30,13 +30,6 @@ const useFetch = (
   }, [fetchData, ...dependencies]);
 
   return { data, loading, error };
-  // return [data, loading, error, fetchData];
-  // return { data, loading, error, fetchData };
-  // return { data, loading, error, fetchData };
-  // const [data, setData] = useState<any>(null);
-  // const [loading, setLoading] = useState<boolean>(true);
-  // const [error, setError] = useState<Error | null>(null);
-
   // useEffect(() => {
   //   const fetchData = async () => {
   //     setLoading(true);
