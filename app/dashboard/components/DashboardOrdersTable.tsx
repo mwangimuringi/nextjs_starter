@@ -21,7 +21,9 @@ const DashboardOrdersTable: React.FC<Props> = ({ orders }) => {
       if (sortBy === "total") {
         return ascending ? a.total - b.total : b.total - a.total;
       } else if (sortBy === "status") {
-        return ascending ? a.status.localeCompare(b.status) : b.status.localeCompare(a.status);
+        return ascending
+          ? a.status.localeCompare(b.status)
+          : b.status.localeCompare(a.status);
       }
       return 0;
     });
@@ -46,10 +48,16 @@ const DashboardOrdersTable: React.FC<Props> = ({ orders }) => {
           <tr className="bg-gray-100">
             <th className="p-3 text-left">Order ID</th>
             <th className="p-3 text-left">Customer</th>
-            <th className="p-3 text-left cursor-pointer" onClick={() => handleSort("status")}>
+            <th
+              className="p-3 text-left cursor-pointer"
+              onClick={() => handleSort("status")}
+            >
               Status {sortBy === "status" ? (ascending ? "↑" : "↓") : ""}
             </th>
-            <th className="p-3 text-left cursor-pointer" onClick={() => handleSort("total")}>
+            <th
+              className="p-3 text-left cursor-pointer"
+              onClick={() => handleSort("total")}
+            >
               Total {sortBy === "total" ? (ascending ? "↑" : "↓") : ""}
             </th>
           </tr>
@@ -70,6 +78,49 @@ const DashboardOrdersTable: React.FC<Props> = ({ orders }) => {
           </tr>
         </tbody>
       </table>
+      <div className="mt-4 text-center">
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          View All
+        </button>
+      </div>
+
+      {/* TODO: Add pagination */}
+      {/* <div className="mt-4 flex justify-center">
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 11a9 9 0 019 9m-15.5 0a9 9 0 01-9-9m9-5H2m15.5 0H7a9 9 0 01-9 9v5m15.5 0v-5a9 9 0 01-9-9m-9-5V2m0 5h.01"
+            />
+          </svg>
+    </div>
+
+    <div className="flex justify-center">
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+          />
+        </svg>
+      </button>
+    </div> */}
     </div>
   );
 };
