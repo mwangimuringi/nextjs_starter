@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FaFacebookF, FaTwitter, FaLinkedin } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -14,6 +15,25 @@ export default function Footer() {
         <Link href="/support" className="hover:text-white">
           Support
         </Link>
+      </div>
+      <div className="mt-2 md:mt-0 flex space-x-3">
+        <a
+          href="https://facebook.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaFacebookF size={20} />
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+          <FaTwitter size={20} />
+        </a>
+        <a
+          href="https://linkedin.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaLinkedin size={20} />
+        </a>
       </div>
     </footer>
   );
