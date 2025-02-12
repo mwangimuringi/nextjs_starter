@@ -14,7 +14,11 @@ export default function Navbar() {
       <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
         ☰
       </button>
-      <div className={`md:flex space-x-4 ${menuOpen ? "block" : "hidden"}`}>
+      <div
+        className={`absolute top-16 right-0 bg-blue-700 text-white md:static md:flex space-x-4 p-4 md:p-0 ${
+          menuOpen ? "block" : "hidden"
+        }`}
+      >
         <Link
           href="/products"
           className={pathname === "/products" ? "underline" : ""}
