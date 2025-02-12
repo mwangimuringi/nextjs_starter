@@ -1,7 +1,16 @@
 import Link from "next/link";
 import { FaFacebookF, FaTwitter, FaLinkedin } from "react-icons/fa";
+import { useState } from "react";
 
 export default function Footer() {
+  const [email, setEmail] = useState("");
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    alert(`Subscribed with: ${email}`);
+    setEmail("");
+  };
+
   return (
     <footer className="bg-black text-gray-300 p-6 text-center flex flex-col md:flex-row md:justify-between items-center">
       <p className="text-sm">
@@ -44,6 +53,22 @@ export default function Footer() {
           <FaLinkedin size={20} />
         </a>
       </div>
+      <form onSubmit={handleSubscribe} className="mt-4 md:mt-0 flex">
+        <input
+          type="email"
+          placeholder="Enter your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="p-2 rounded-l-md text-black"
+          required
+        />
+        <button
+          type="submit"
+          className="bg-blue-600 px-4 py-2 rounded-r-md hover:bg-blue-700"
+        >
+          Subscribe
+        </button>
+      </form>
     </footer>
   );
 }
