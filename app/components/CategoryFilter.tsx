@@ -23,13 +23,14 @@ export default function CategoryFilter({
   };
 
   return (
-    <div className="p-4 border rounded-md shadow-md flex items-center space-x-2">
+    <div className="p-4 border rounded-md shadow-md flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-2">
       <FaFilter className="text-gray-600" />
       <h2 className="text-lg font-semibold">Filter by Category</h2>
       <select
-        className="ml-auto p-2 border rounded-md"
+        className="w-full sm:w-auto p-2 border rounded-md"
         value={selectedCategory}
         onChange={handleChange}
+        aria-label="Category Filter"
       >
         <option>All Categories</option>
         {categories.map((category) => (
@@ -37,8 +38,9 @@ export default function CategoryFilter({
         ))}
       </select>
       <button
-        className="ml-2 bg-red-500 text-white px-3 py-1 rounded-md"
+        className="bg-red-500 text-white px-3 py-1 rounded-md w-full sm:w-auto"
         onClick={handleReset}
+        aria-label="Reset Filter"
       >
         Reset
       </button>
