@@ -1,14 +1,28 @@
+import { useState } from "react";
+
 interface BidButtonProps {
-  onBid: () => void;
+  onBid: () => Promise<void>;
 }
 
 export default function BidButton({ onBid }: BidButtonProps) {
+  const [loading, setLoading] = useState(false);
+
+  const handleClick = async () => {
+    if (loading) return;
+    setLoading(true);
+    await onBid();
+    setLoading(false);
+  };
+
   return (
     <button
-      className="bg-blue-500 text-white px-4 py-2 rounded-md"
-      onClick={onBid}
+      className={`px-4 py-2 rounded-md ${
+        loading ? "bg-gray-400" : "bg-blue-500 text-white"
+      }`}
+      onClick={handleClick}
+      disabled={loading}
     >
-      Place Bid
+      {loading ? "Bidding..." : "Place Bid"}
     </button>
   );
 }
