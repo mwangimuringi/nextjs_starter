@@ -17,6 +17,11 @@ export default function CategoryFilter({
     onSelectCategory(e.target.value);
   };
 
+  const handleReset = () => {
+    setSelectedCategory("All Categories");
+    onSelectCategory("All Categories");
+  };
+
   return (
     <div className="p-4 border rounded-md shadow-md flex items-center space-x-2">
       <FaFilter className="text-gray-600" />
@@ -31,6 +36,12 @@ export default function CategoryFilter({
           <option key={category}>{category}</option>
         ))}
       </select>
+      <button
+        className="ml-2 bg-red-500 text-white px-3 py-1 rounded-md"
+        onClick={handleReset}
+      >
+        Reset
+      </button>
     </div>
   );
 }
