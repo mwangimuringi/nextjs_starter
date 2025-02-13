@@ -1,7 +1,20 @@
 import { useState } from "react";
 
-export default function CategoryFilter() {
+interface CategoryFilterProps {
+  categories: string[];
+  onSelectCategory: (category: string) => void;
+}
+
+export default function CategoryFilter({
+  categories,
+  onSelectCategory,
+}: CategoryFilterProps) {
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
+
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedCategory(e.target.value);
+    onSelectCategory(e.target.value);
+  };
 
   return (
     <div className="p-4">
@@ -9,12 +22,12 @@ export default function CategoryFilter() {
       <select
         className="mt-2 p-2 border rounded-md"
         value={selectedCategory}
-        onChange={(e) => setSelectedCategory(e.target.value)}
+        onChange={handleChange}
       >
         <option>All Categories</option>
-        <option>Electronics</option>
-        <option>Fashion</option>
-        <option>Home & Garden</option>
+        {categories.map((category) => (
+          <option key={category}>{category}</option>
+        ))}
       </select>
     </div>
   );
