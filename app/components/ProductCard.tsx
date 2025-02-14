@@ -4,10 +4,18 @@ import { useState } from "react";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Subscribed with: ${email}`);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    setSubscribed(true);
+    setTimeout(() => setSubscribed(false), 3000);
     setEmail("");
   };
 
@@ -16,6 +24,7 @@ export default function Footer() {
       <p className="text-sm">
         © {new Date().getFullYear()} CommerceHub. Your trusted marketplace.
       </p>
+
       <div className="mt-2 md:mt-0 space-x-4 text-sm">
         <Link href="/terms" className="hover:text-white">
           Terms
@@ -27,6 +36,7 @@ export default function Footer() {
           Support
         </Link>
       </div>
+
       <div className="mt-2 md:mt-0 flex space-x-3">
         <a
           href="https://facebook.com"
@@ -53,6 +63,7 @@ export default function Footer() {
           <FaLinkedin size={20} />
         </a>
       </div>
+
       <form onSubmit={handleSubscribe} className="mt-4 md:mt-0 flex">
         <input
           type="email"
@@ -61,6 +72,7 @@ export default function Footer() {
           onChange={(e) => setEmail(e.target.value)}
           className="p-2 rounded-l-md text-black"
           required
+          aria-label="Email for newsletter subscription"
         />
         <button
           type="submit"
@@ -69,6 +81,10 @@ export default function Footer() {
           Subscribe
         </button>
       </form>
+
+      {subscribed && (
+        <p className="text-green-400 mt-2">Thank you for subscribing!</p>
+      )}
     </footer>
   );
 }
