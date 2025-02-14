@@ -16,7 +16,9 @@ export default async function ProductsPage() {
     <div className="p-6">
       <h1 className="text-2xl font-semibold">Products</h1>
       <SearchBar />
-      <CategoryFilter />
+      <CategoryFilter categories={[]} onSelectCategory={function (category: string): void {
+              throw new Error("Function not implemented.");
+          } } />
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
         {products.map((product: any) => (
           <ProductCard key={product.id} product={product} />
