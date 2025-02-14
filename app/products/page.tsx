@@ -1,9 +1,21 @@
-const products = [
-    { id: 1, name: "iPhone 14", price: 999 },
-    { id: 2, name: "MacBook Pro", price: 1999 },
-];
+"use client";
+import { useEffect, useState } from "react";
+
+interface Product {
+    id: number;
+    name: string;
+    price: number;
+}
 
 export default function ProductsPage() {
+    const [products, setProducts] = useState<Product[]>([]);
+
+    useEffect(() => {
+        fetch("/api/products")
+            .then((res) => res.json())
+            .then((data) => setProducts(data));
+    }, []);
+
     return (
         <div className="p-6">
             <h1 className="text-2xl font-semibold">Products</h1>
