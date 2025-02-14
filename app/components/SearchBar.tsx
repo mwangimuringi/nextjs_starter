@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 
 const SearchBar = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedTerm, setDebouncedTerm] = useState("");
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedTerm(searchTerm);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [searchTerm]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchTerm.trim()) {
-      console.log('Search for:', searchTerm);
+    if (debouncedTerm.trim()) {
+      console.log("Search for:", debouncedTerm);
     }
   };
-
-  const handleReset = () => setSearchTerm('');
 
   return (
     <div className="flex items-center justify-center w-full max-w-md mx-auto mt-4">
@@ -22,13 +29,6 @@ const SearchBar = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <button
-          type="button"
-          onClick={handleReset}
-          className="ml-2 text-gray-500 hover:text-black"
-        >
-          Clear
-        </button>
       </form>
     </div>
   );
