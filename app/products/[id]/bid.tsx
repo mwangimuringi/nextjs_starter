@@ -3,7 +3,7 @@ import { SetStateAction, useState } from "react";
 const BidPage = () => {
   const [bidAmount, setBidAmount] = useState("");
 
-  const handleChange = (e: { target: { value: SetStateAction<string>; }; }) => {
+  const handleChange = (e: { target: { value: SetStateAction<string> } }) => {
     setBidAmount(e.target.value);
   };
   return (
@@ -26,6 +26,9 @@ const BidPage = () => {
         >
           Submit Bid
         </button>
+        <p className="text-sm text-gray-500">
+          Note: Bids are final and binding on the date of purchase.
+        </p>
       </form>
     </div>
   );
