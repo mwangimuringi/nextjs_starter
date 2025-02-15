@@ -6,9 +6,6 @@ const BidPage = () => {
   const handleChange = (e: { target: { value: SetStateAction<string>; }; }) => {
     setBidAmount(e.target.value);
   };
-
-  
-
   return (
     <div className="p-6 max-w-lg mx-auto bg-white rounded-xl shadow-md">
       <h2 className="text-xl font-semibold mb-4">Place Your Bid</h2>
