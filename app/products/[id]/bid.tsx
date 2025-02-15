@@ -15,6 +15,8 @@ const BidPage = () => {
           value={bidAmount}
           onChange={handleChange}
           placeholder="Enter bid amount"
+          step="0.01"
+          min="0"
           className="border p-2 rounded-md w-full"
           required
         />
