@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
-import CategoryFilter from "../components/CategoryFilter";
-import ProductCard from "../components/ProductCard";
-import SearchBar from "../components/SearchBar";
+import CategoryFilter from "../../components/CategoryFilter";
+import ProductCard from "../../components/ProductCard";
+import SearchBar from "../../components/SearchBar";
 interface Product {
   id: number;
   name: string;
