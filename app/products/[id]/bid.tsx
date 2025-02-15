@@ -29,6 +29,18 @@ const BidPage = () => {
         <p className="text-sm text-gray-500">
           Note: Bids are final and binding on the date of purchase.
         </p>
+
+        <p className="text-sm text-gray-500">
+          Note: Bids are final and binding on the date of purchase.
+        </p>
+        <div className="flex justify-end">
+          <button
+            type="button"
+            className="bg-white text-blue-500 p-2 rounded-md hover:bg-blue-100"
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );
