@@ -6,6 +6,16 @@ const CartPage = () => {
     { id: 2, name: "Product B", price: 35, quantity: 1 },
   ]);
 
+  const updateQuantity = (id, change) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === id
+          ? { ...item, quantity: Math.max(1, item.quantity + change) }
+          : item
+      )
+    );
+  };
+
   return (
     <div className="p-6 max-w-2xl mx-auto bg-white rounded-xl shadow-md">
       <h2 className="text-2xl font-semibold mb-4">Your Cart</h2>
@@ -13,7 +23,22 @@ const CartPage = () => {
         {cartItems.map((item) => (
           <li key={item.id} className="flex justify-between border-b pb-2">
             <span>{item.name}</span>
-            <span>${item.price}</span>
+            <div className="flex items-center gap-2">
+              <button
+                className="bg-gray-300 px-2 rounded"
+                onClick={() => updateQuantity(item.id, -1)}
+              >
+                -
+              </button>
+              <span>{item.quantity}</span>
+              <button
+                className="bg-gray-300 px-2 rounded"
+                onClick={() => updateQuantity(item.id, 1)}
+              >
+                +
+              </button>
+            </div>
+            <span>${item.price * item.quantity}</span>
           </li>
         ))}
       </ul>
