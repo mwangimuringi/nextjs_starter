@@ -6,7 +6,7 @@ const CartPage = () => {
     { id: 2, name: "Product B", price: 35, quantity: 1 },
   ]);
 
-  const updateQuantity = (id, change) => {
+  const updateQuantity = (id: number, change: number) => {
     setCartItems((prev) =>
       prev.map((item) =>
         item.id === id
@@ -16,7 +16,7 @@ const CartPage = () => {
     );
   };
 
-  const removeItem = (id) => {
+  const removeItem = (id: number) => {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
