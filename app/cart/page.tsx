@@ -27,29 +27,34 @@ const CartPage = () => {
 
   return (
     <div className="p-6 max-w-2xl mx-auto bg-white rounded-xl shadow-md">
-      <h2 className="text-2xl font-semibold mb-4">Your Cart</h2>
+      <h2 className="text-2xl font-semibold mb-4 text-center">Your Cart</h2>
       <ul className="space-y-4">
         {cartItems.map((item) => (
-          <li key={item.id} className="flex justify-between items-center border-b pb-2">
-            <span>{item.name}</span>
-            <div className="flex items-center gap-2">
+          <li
+            key={item.id}
+            className="flex justify-between items-center border-b pb-3 px-2"
+          >
+            <span className="font-medium">{item.name}</span>
+            <div className="flex items-center gap-3">
               <button
-                className="bg-gray-300 px-2 rounded"
+                className="bg-gray-300 px-3 py-1 rounded-md hover:bg-gray-400 transition"
                 onClick={() => updateQuantity(item.id, -1)}
               >
                 -
               </button>
-              <span>{item.quantity}</span>
+              <span className="text-lg">{item.quantity}</span>
               <button
-                className="bg-gray-300 px-2 rounded"
+                className="bg-gray-300 px-3 py-1 rounded-md hover:bg-gray-400 transition"
                 onClick={() => updateQuantity(item.id, 1)}
               >
                 +
               </button>
             </div>
-            <span>${item.price * item.quantity}</span>
+            <span className="font-semibold text-lg">
+              ${item.price * item.quantity}
+            </span>
             <button
-              className="bg-red-500 text-white px-2 rounded"
+              className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition"
               onClick={() => removeItem(item.id)}
             >
               Remove
@@ -57,7 +62,12 @@ const CartPage = () => {
           </li>
         ))}
       </ul>
-      <div className="mt-4 text-xl font-bold">Total: ${totalPrice}</div>
+      <div className="mt-6 text-xl font-bold text-center">
+        Total: ${totalPrice}
+      </div>
+      <button className="mt-4 w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition">
+        Checkout
+      </button>
     </div>
   );
 };
