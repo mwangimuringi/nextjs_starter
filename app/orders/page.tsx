@@ -16,19 +16,42 @@ const OrdersPage = () => {
   }, []);
 
   const filteredOrders =
-    filter === "All" ? orders : orders.filter((order) => order.status === filter);
+    filter === "All"
+      ? orders
+      : orders.filter((order) => order.status === filter);
 
   return (
     <div className="p-6 max-w-3xl mx-auto">
       <h2 className="text-2xl font-semibold mb-4">Orders</h2>
-      <div className="mb-4">
-        <button onClick={() => setFilter("All")} className="px-3 py-1 mr-2 bg-gray-200 rounded">
+      <div className="mb-4 flex space-x-2">
+        <button
+          onClick={() => setFilter("All")}
+          className={`px-3 py-1 rounded-lg transition ${
+            filter === "All"
+              ? "bg-gray-800 text-white"
+              : "bg-gray-200 hover:bg-gray-300"
+          }`}
+        >
           All
         </button>
-        <button onClick={() => setFilter("Pending")} className="px-3 py-1 mr-2 bg-yellow-200 rounded">
+        <button
+          onClick={() => setFilter("Pending")}
+          className={`px-3 py-1 rounded-lg transition ${
+            filter === "Pending"
+              ? "bg-yellow-600 text-white"
+              : "bg-yellow-200 hover:bg-yellow-300"
+          }`}
+        >
           Pending
         </button>
-        <button onClick={() => setFilter("Shipped")} className="px-3 py-1 bg-green-200 rounded">
+        <button
+          onClick={() => setFilter("Shipped")}
+          className={`px-3 py-1 rounded-lg transition ${
+            filter === "Shipped"
+              ? "bg-green-600 text-white"
+              : "bg-green-200 hover:bg-green-300"
+          }`}
+        >
           Shipped
         </button>
       </div>
@@ -37,14 +60,19 @@ const OrdersPage = () => {
       ) : (
         <ul className="space-y-3">
           {filteredOrders.map((order) => (
-            <li key={order.id} className="border p-4 rounded-lg shadow-md flex justify-between">
+            <li
+              key={order.id}
+              className="border p-4 rounded-lg shadow-md flex justify-between transition hover:shadow-lg"
+            >
               <div>
                 <p className="font-medium text-lg">{order.item}</p>
                 <p className="text-gray-600">${order.price}</p>
               </div>
               <span
                 className={`text-sm font-semibold px-3 py-1 rounded-lg ${
-                  order.status === "Shipped" ? "bg-green-200 text-green-700" : "bg-yellow-200 text-yellow-700"
+                  order.status === "Shipped"
+                    ? "bg-green-200 text-green-700"
+                    : "bg-yellow-200 text-yellow-700"
                 }`}
               >
                 {order.status}
