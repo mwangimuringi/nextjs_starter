@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
 
+type Order = {
+  id: number;
+  item: string;
+  price: number;
+  status: "Pending" | "Shipped";
+};
+
 const OrdersPage = () => {
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState("All");
+  const [filter, setFilter] = useState<"All" | "Pending" | "Shipped">("All");
 
   useEffect(() => {
     setTimeout(() => {
@@ -24,36 +31,19 @@ const OrdersPage = () => {
     <div className="p-6 max-w-3xl mx-auto">
       <h2 className="text-2xl font-semibold mb-4">Orders</h2>
       <div className="mb-4 flex space-x-2">
-        <button
-          onClick={() => setFilter("All")}
-          className={`px-3 py-1 rounded-lg transition ${
-            filter === "All"
-              ? "bg-gray-800 text-white"
-              : "bg-gray-200 hover:bg-gray-300"
-          }`}
-        >
-          All
-        </button>
-        <button
-          onClick={() => setFilter("Pending")}
-          className={`px-3 py-1 rounded-lg transition ${
-            filter === "Pending"
-              ? "bg-yellow-600 text-white"
-              : "bg-yellow-200 hover:bg-yellow-300"
-          }`}
-        >
-          Pending
-        </button>
-        <button
-          onClick={() => setFilter("Shipped")}
-          className={`px-3 py-1 rounded-lg transition ${
-            filter === "Shipped"
-              ? "bg-green-600 text-white"
-              : "bg-green-200 hover:bg-green-300"
-          }`}
-        >
-          Shipped
-        </button>
+        {["All", "Pending", "Shipped"].map((status) => (
+          <button
+            key={status}
+            onClick={() => setFilter(status as "All" | "Pending" | "Shipped")}
+            className={`px-3 py-1 rounded-lg transition ${
+              filter === status
+                ? "bg-gray-800 text-white"
+                : "bg-gray-200 hover:bg-gray-300"
+            }`}
+          >
+            {status}
+          </button>
+        ))}
       </div>
       {loading ? (
         <p className="text-gray-500">Loading orders...</p>
