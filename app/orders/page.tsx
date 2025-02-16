@@ -22,12 +22,18 @@ const OrdersPage = () => {
       ) : (
         <ul className="space-y-3">
           {orders.map((order) => (
-            <li key={order.id} className="border p-4 rounded-lg">
-              <p className="font-medium">{order.item}</p>
-              <p className="text-gray-600">${order.price}</p>
-              <p className={`text-sm ${order.status === "Shipped" ? "text-green-600" : "text-yellow-600"}`}>
+            <li key={order.id} className="border p-4 rounded-lg shadow-md flex justify-between">
+              <div>
+                <p className="font-medium text-lg">{order.item}</p>
+                <p className="text-gray-600">${order.price}</p>
+              </div>
+              <span
+                className={`text-sm font-semibold px-3 py-1 rounded-lg ${
+                  order.status === "Shipped" ? "bg-green-200 text-green-700" : "bg-yellow-200 text-yellow-700"
+                }`}
+              >
                 {order.status}
-              </p>
+              </span>
             </li>
           ))}
         </ul>
