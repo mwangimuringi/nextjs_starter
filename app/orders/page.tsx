@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 const OrdersPage = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState("All");
 
   useEffect(() => {
     setTimeout(() => {
@@ -14,14 +15,28 @@ const OrdersPage = () => {
     }, 1000);
   }, []);
 
+  const filteredOrders =
+    filter === "All" ? orders : orders.filter((order) => order.status === filter);
+
   return (
     <div className="p-6 max-w-3xl mx-auto">
       <h2 className="text-2xl font-semibold mb-4">Orders</h2>
+      <div className="mb-4">
+        <button onClick={() => setFilter("All")} className="px-3 py-1 mr-2 bg-gray-200 rounded">
+          All
+        </button>
+        <button onClick={() => setFilter("Pending")} className="px-3 py-1 mr-2 bg-yellow-200 rounded">
+          Pending
+        </button>
+        <button onClick={() => setFilter("Shipped")} className="px-3 py-1 bg-green-200 rounded">
+          Shipped
+        </button>
+      </div>
       {loading ? (
         <p className="text-gray-500">Loading orders...</p>
       ) : (
         <ul className="space-y-3">
-          {orders.map((order) => (
+          {filteredOrders.map((order) => (
             <li key={order.id} className="border p-4 rounded-lg shadow-md flex justify-between">
               <div>
                 <p className="font-medium text-lg">{order.item}</p>
