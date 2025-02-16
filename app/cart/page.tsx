@@ -20,6 +20,11 @@ const CartPage = () => {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
   return (
     <div className="p-6 max-w-2xl mx-auto bg-white rounded-xl shadow-md">
       <h2 className="text-2xl font-semibold mb-4">Your Cart</h2>
@@ -52,6 +57,7 @@ const CartPage = () => {
           </li>
         ))}
       </ul>
+      <div className="mt-4 text-xl font-bold">Total: ${totalPrice}</div>
     </div>
   );
 };
