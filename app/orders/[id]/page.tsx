@@ -1,10 +1,18 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
+type Order = {
+    id: number;
+    item: string;
+    price: number;
+    status: "Pending" | "Shipped" | "Delivered";
+  };
+  
+  const [order, setOrder] = useState<Order | null>(null);
+  
 const OrderDetailsPage = () => {
   const router = useRouter();
   const { id } = router.query as { id: string };
-  const [order, setOrder] = useState(null);
 
   const getStatusClass = (status: string) => {
     switch (status) {
