@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 
 type Order = {
   id: number;
@@ -9,8 +9,7 @@ type Order = {
 };
 
 const OrderDetailsPage = () => {
-  const router = useRouter();
-  const { id } = router.query as { id: string };
+  const { id } = useParams();
   const [order, setOrder] = useState<Order | null>(null);
   const [loading, setLoading] = useState(true);
 
