@@ -10,15 +10,17 @@ type Order = {
 
 const OrderDetailsPage = () => {
   const { id } = useParams();
+  const orderId = parseInt(String(id), 10); 
+
   const [order, setOrder] = useState<Order | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!id) return;
+    if (!orderId) return;
 
     setTimeout(() => {
       const mockOrder: Order = {
-        id: parseInt(id),
+        id: orderId,
         item: "Laptop",
         price: 1200,
         status: "Shipped",
@@ -26,18 +28,7 @@ const OrderDetailsPage = () => {
       setOrder(mockOrder);
       setLoading(false);
     }, 1000);
-  }, [id]);
-
-  const getStatusClass = (status: Order["status"]) => {
-    switch (status) {
-      case "Delivered":
-        return "bg-green-200 text-green-700";
-      case "Shipped":
-        return "bg-blue-200 text-blue-700";
-      default:
-        return "bg-yellow-200 text-yellow-700";
-    }
-  };
+  }, [orderId]);
 
   if (loading) {
     return (
@@ -56,9 +47,7 @@ const OrderDetailsPage = () => {
         <p className="text-lg font-medium">{order.item}</p>
         <p className="text-gray-600">Price: ${order.price}</p>
         <span
-          className={`text-sm font-semibold px-3 py-1 rounded-lg ${getStatusClass(
-            order.status
-          )}`}
+          className={`text-sm font-semibold px-3 py-1 rounded-lg bg-blue-200 text-blue-700`}
         >
           {order.status}
         </span>
