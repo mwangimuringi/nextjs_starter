@@ -33,6 +33,11 @@ export type Order = {
     return true;
   };
   
+  export const getOrderById = (id: number) => {
+    const order = orders.find((order) => order.id === id);
+    if (!order) throw new Error(`Order with ID ${id} not found`);
+    return order;
+  };
+  
   export const getOrders = () => orders;
-  export const getOrderById = (id: number) => orders.find((order) => order.id === id);
   
