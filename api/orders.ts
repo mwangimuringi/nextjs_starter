@@ -7,6 +7,11 @@ export type Order = {
   
   const orders: Order[] = [];
   
+  orders.push(
+    { id: 1, item: "Laptop", price: 1200, status: "Pending" },
+    { id: 2, item: "Phone", price: 800, status: "Shipped" }
+  );
+  
   export const createOrder = (order: Order) => {
     orders.push(order);
     return order;
