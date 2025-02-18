@@ -49,6 +49,26 @@ const Navbar = () => {
           Login
         </Link>
       )}
+      {/* Mobile menu */}
+      <button
+        className="md:hidden flex items-center space-x-2 text-gray-500 hover:text-gray-700"
+        onClick={() => setOpen(!open)}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      </button>
       <div className="hidden md:flex space-x-6">
         <Link href="/products" className="hover:text-blue-600">Products</Link>
         <Link href="/cart" className="hover:text-blue-600">Cart</Link>
