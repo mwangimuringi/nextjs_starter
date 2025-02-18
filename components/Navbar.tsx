@@ -69,13 +69,23 @@ const Navbar = () => {
           />
         </svg>
       </button>
-      <div className="hidden md:flex space-x-6">
-        <Link href="/products" className="hover:text-blue-600">Products</Link>
-        <Link href="/cart" className="hover:text-blue-600">Cart</Link>
-        <Link href="/dashboard" className="hover:text-blue-600">Dashboard</Link>
-      </div>
+      {/* Mobile menu */}
+      {open && (
+        <div className="absolute top-0 left-0 w-full h-full bg-white shadow-lg">
+          <div className="p-4">
+            <Link href="/products" className="hover:text-blue-600">
+              Products
+            </Link>
+            <Link href="/cart" className="hover:text-blue-600">
+              Cart
+            </Link>
+            <Link href="/dashboard" className="hover:text-blue-600">
+              Dashboard
+            </Link>
+          </div>
+        </div>
+     
     </nav>
-  );
-};
+    )}
 
 export default Navbar;
