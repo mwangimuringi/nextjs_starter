@@ -1,4 +1,18 @@
+import { User } from "@clerk/nextjs/server";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+
+const [user, setUser] = useState<User | null>(null);
+useEffect(() => {
+  setTimeout(() => {
+    setUser({
+      id: 1,
+      name: "Julius",
+      email: "julius@example.com",
+      role: "admin",
+    });
+  }, 1000);
+}, []);
 
 const Navbar = () => {
   return (
