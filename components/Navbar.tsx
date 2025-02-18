@@ -5,6 +5,13 @@ const Navbar = () => {
     <nav className="bg-white shadow-md px-6 py-4 flex justify-between items-center">
       <div className="text-xl font-semibold">
         <Link href="/">CommerceHub</Link>
+        <span className="text-gray-500">by Julius</span>
+        <Link href="/login" className="ml-4 text-blue-600">
+          Login
+        </Link>
+        <Link href="/register" className="ml-4 text-blue-600">
+          Register
+        </Link>
       </div>
       <div className="hidden md:flex space-x-6">
         <Link href="/products" className="hover:text-blue-600">Products</Link>
