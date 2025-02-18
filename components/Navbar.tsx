@@ -14,6 +14,8 @@ useEffect(() => {
   }, 1000);
 }, []);
 
+console.log(user);
+
 const Navbar = () => {
   return (
     <nav className="bg-white shadow-md px-6 py-4 flex justify-between items-center">
@@ -27,6 +29,26 @@ const Navbar = () => {
           Register
         </Link>
       </div>
+      {user ? (
+        <div className="flex space-x-6">
+          <Link href="/orders" className="hover:text-blue-600">
+            Orders
+          </Link>
+          <Link href="/profile" className="hover:text-blue-600">
+            Profile
+          </Link>
+          <button
+            onClick={() => user.signOut()}
+            className="hover:text-blue-600"
+          >
+            Logout
+          </button>
+        </div>
+      ) : (
+        <Link href="/login" className="ml-4 text-blue-600">
+          Login
+        </Link>
+      )}
       <div className="hidden md:flex space-x-6">
         <Link href="/products" className="hover:text-blue-600">Products</Link>
         <Link href="/cart" className="hover:text-blue-600">Cart</Link>
