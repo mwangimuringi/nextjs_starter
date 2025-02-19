@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -16,6 +17,17 @@ const Footer = () => {
         <Link href="/privacy" className="hover:text-gray-400">
           Privacy Policy
         </Link>
+      </div>
+      <div className="flex justify-center mt-2 md:mt-0 space-x-4">
+        <a href="#" className="hover:text-gray-400">
+          <FaFacebook />
+        </a>
+        <a href="#" className="hover:text-gray-400">
+          <FaTwitter />
+        </a>
+        <a href="#" className="hover:text-gray-400">
+          <FaInstagram />
+        </a>
       </div>
     </footer>
   );
