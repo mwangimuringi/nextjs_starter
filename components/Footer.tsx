@@ -9,7 +9,10 @@ const Footer = () => {
       <p className="text-sm md:text-base">
         © {currentYear} CommerceHub. All rights reserved.
       </p>
-      <div className="mt-2 space-x-6 text-sm md:mt-0 flex justify-center">
+      <nav
+        className="mt-2 space-x-6 text-sm md:mt-0 flex justify-center"
+        aria-label="Footer Navigation"
+      >
         <Link href="/about" className="hover:text-gray-400 transition">
           About
         </Link>
@@ -19,15 +22,27 @@ const Footer = () => {
         <Link href="/privacy" className="hover:text-gray-400 transition">
           Privacy Policy
         </Link>
-      </div>
+      </nav>
       <div className="flex justify-center mt-2 md:mt-0 space-x-6">
-        <a href="#" className="hover:text-gray-400 transition">
+        <a
+          href="#"
+          className="hover:text-gray-400 transition"
+          aria-label="Facebook"
+        >
           <FaFacebook />
         </a>
-        <a href="#" className="hover:text-gray-400 transition">
+        <a
+          href="#"
+          className="hover:text-gray-400 transition"
+          aria-label="Twitter"
+        >
           <FaTwitter />
         </a>
-        <a href="#" className="hover:text-gray-400 transition">
+        <a
+          href="#"
+          className="hover:text-gray-400 transition"
+          aria-label="Instagram"
+        >
           <FaInstagram />
         </a>
       </div>
