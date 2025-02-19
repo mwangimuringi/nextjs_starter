@@ -2,10 +2,12 @@ import Link from "next/link";
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="bg-gray-900 text-white text-center py-6 md:flex md:justify-between md:items-center md:px-10">
       <p className="text-sm md:text-base">
-        © 2025 CommerceHub. All rights reserved.
+        © {currentYear} CommerceHub. All rights reserved.
       </p>
       <div className="mt-2 space-x-6 text-sm md:mt-0 flex justify-center">
         <Link href="/about" className="hover:text-gray-400 transition">
