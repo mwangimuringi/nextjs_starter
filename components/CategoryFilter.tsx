@@ -7,8 +7,13 @@ const CreateFilter: React.FC = () => {
       <input
         type="text"
         placeholder="Search..."
-        className="w-full p-2 border rounded-md"
+        className="w-full p-2 border rounded-md mb-2"
       />
+      <select className="w-full p-2 border rounded-md">
+        <option value="">Select Category</option>
+        <option value="electronics">Electronics</option>
+        <option value="fashion">Fashion</option>
+      </select>
     </div>
   );
 };
