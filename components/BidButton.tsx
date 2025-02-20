@@ -8,11 +8,16 @@ interface BidButtonProps {
 
 const BidButton: React.FC<BidButtonProps> = ({ bidAmount, onBid }) => {
   const [isDisabled, setIsDisabled] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleClick = () => {
     setIsDisabled(true);
+    setLoading(true);
     onBid(bidAmount);
-    setTimeout(() => setIsDisabled(false), 3000);
+    setTimeout(() => {
+      setIsDisabled(false);
+      setLoading(false);
+    }, 3000);
   };
 
   return (
@@ -23,7 +28,7 @@ const BidButton: React.FC<BidButtonProps> = ({ bidAmount, onBid }) => {
       onClick={handleClick}
       disabled={isDisabled}
     >
-      {isDisabled ? "Bidding..." : `Bid $${bidAmount}`}
+      {loading ? "Processing..." : `Bid $${bidAmount}`}
     </button>
   );
 };
