@@ -1,13 +1,22 @@
 // components/CreateFilter.tsx
 import React, { useState } from "react";
 
-const CreateFilter: React.FC = () => {
+interface CreateFilterProps {
+  onFilterChange: (filters: { search: string; category: string }) => void;
+}
+
+const CreateFilter: React.FC<CreateFilterProps> = ({ onFilterChange }) => {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
+
+  const handleFilterChange = () => {
+    onFilterChange({ search, category });
+  };
 
   const resetFilters = () => {
     setSearch("");
     setCategory("");
+    onFilterChange({ search: "", category: "" });
   };
 
   return (
@@ -17,12 +26,18 @@ const CreateFilter: React.FC = () => {
         placeholder="Search..."
         className="w-full p-2 border rounded-md mb-2"
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={(e) => {
+          setSearch(e.target.value);
+          handleFilterChange();
+        }}
       />
       <select
         className="w-full p-2 border rounded-md mb-2"
         value={category}
-        onChange={(e) => setCategory(e.target.value)}
+        onChange={(e) => {
+          setCategory(e.target.value);
+          handleFilterChange();
+        }}
       >
         <option value="">Select Category</option>
         <option value="electronics">Electronics</option>
