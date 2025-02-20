@@ -1,12 +1,16 @@
 // components/BidButton.tsx
 import React, { useState } from "react";
 
-const BidButton: React.FC = () => {
+interface BidButtonProps {
+  bidAmount: number;
+}
+
+const BidButton: React.FC<BidButtonProps> = ({ bidAmount }) => {
   const [isDisabled, setIsDisabled] = useState(false);
 
   const handleClick = () => {
     setIsDisabled(true);
-    alert("Bid placed!");
+    alert(`Bid placed: $${bidAmount}`);
     setTimeout(() => setIsDisabled(false), 3000);
   };
 
@@ -18,7 +22,7 @@ const BidButton: React.FC = () => {
       onClick={handleClick}
       disabled={isDisabled}
     >
-      {isDisabled ? "Bidding..." : "Bid Now"}
+      {isDisabled ? "Bidding..." : `Bid $${bidAmount}`}
     </button>
   );
 };
