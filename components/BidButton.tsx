@@ -3,14 +3,15 @@ import React, { useState } from "react";
 
 interface BidButtonProps {
   bidAmount: number;
+  onBid: (amount: number) => void;
 }
 
-const BidButton: React.FC<BidButtonProps> = ({ bidAmount }) => {
+const BidButton: React.FC<BidButtonProps> = ({ bidAmount, onBid }) => {
   const [isDisabled, setIsDisabled] = useState(false);
 
   const handleClick = () => {
     setIsDisabled(true);
-    alert(`Bid placed: $${bidAmount}`);
+    onBid(bidAmount);
     setTimeout(() => setIsDisabled(false), 3000);
   };
 
