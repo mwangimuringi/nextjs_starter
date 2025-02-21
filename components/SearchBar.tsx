@@ -1,5 +1,5 @@
 // components/SearchBar.tsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
@@ -8,10 +8,13 @@ interface SearchBarProps {
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-    onSearch(e.target.value);
-  };
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      onSearch(searchTerm);
+    }, 300);
+
+    return () => clearTimeout(timeoutId);
+  }, [searchTerm, onSearch]);
 
   const clearSearch = () => {
     setSearchTerm("");
@@ -25,7 +28,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         placeholder="Search..."
         className="w-full p-2 border rounded-md"
         value={searchTerm}
-        onChange={handleSearch}
+        onChange={(e) => setSearchTerm(e.target.value)}
       />
       {searchTerm && (
         <button className="ml-2 text-red-500" onClick={clearSearch}>
