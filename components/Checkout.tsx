@@ -2,12 +2,29 @@
 import React from "react";
 
 const Checkout = () => {
-  return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold">Checkout</h1>
-      <p className="text-gray-600">Complete your purchase.</p>
+const orderSummary = [
+  { id: 1, name: "Product 1", price: 20 },
+  { id: 2, name: "Product 2", price: 35 },
+];
+
+const total = orderSummary.reduce((acc, item) => acc + item.price, 0);
+
+return (
+  <div className="p-6">
+    <h1 className="text-2xl font-bold">Checkout</h1>
+    <div className="mt-4 p-4 border rounded-md bg-gray-50">
+      <h2 className="text-lg font-semibold">Order Summary</h2>
+      <ul>
+        {orderSummary.map((item) => (
+          <li key={item.id} className="flex justify-between">
+            {item.name} - ${item.price}
+          </li>
+        ))}
+      </ul>
+      <p className="mt-2 font-bold">Total: ${total}</p>
     </div>
-  );
+  </div>
+);
 };
 
 export default Checkout;
