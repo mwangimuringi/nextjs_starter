@@ -1,11 +1,21 @@
 // components/SearchBar.tsx
 import React, { useState } from "react";
 
-const SearchBar: React.FC = () => {
+interface SearchBarProps {
+  onSearch: (query: string) => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+    onSearch(e.target.value);
+  };
 
   const clearSearch = () => {
     setSearchTerm("");
+    onSearch("");
   };
 
   return (
@@ -15,7 +25,7 @@ const SearchBar: React.FC = () => {
         placeholder="Search..."
         className="w-full p-2 border rounded-md"
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={handleSearch}
       />
       {searchTerm && (
         <button className="ml-2 text-red-500" onClick={clearSearch}>
