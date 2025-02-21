@@ -1,8 +1,34 @@
 // components/Cart.tsx
-import React from "react";
+import React, { useState } from "react";
+
+interface CartItem {
+  id: number;
+  name: string;
+  price: number;
+}
 
 const Cart: React.FC = () => {
-  return <div className="p-4 border rounded-md">Your cart is empty.</div>;
+  const [cartItems, setCartItems] = useState<CartItem[]>([
+    { id: 1, name: "Product 1", price: 20 },
+    { id: 2, name: "Product 2", price: 35 },
+  ]);
+
+  return (
+    <div className="p-4 border rounded-md">
+      <h2 className="text-lg font-semibold">Shopping Cart</h2>
+      {cartItems.length === 0 ? (
+        <p>Your cart is empty.</p>
+      ) : (
+        <ul>
+          {cartItems.map((item) => (
+            <li key={item.id} className="flex justify-between">
+              {item.name} - ${item.price}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 };
 
 export default Cart;
