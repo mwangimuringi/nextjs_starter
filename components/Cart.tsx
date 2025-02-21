@@ -17,20 +17,30 @@ const Cart: React.FC = () => {
     setCartItems(cartItems.filter((item) => item.id !== id));
   };
 
+  const totalPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
+
   return (
     <div className="p-4 border rounded-md">
       <h2 className="text-lg font-semibold">Shopping Cart</h2>
       {cartItems.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
-        <ul>
-          {cartItems.map((item) => (
-            <li key={item.id} className="flex justify-between">
-              {item.name} - ${item.price}
-              <button className="text-red-500" onClick={() => removeItem(item.id)}>Remove</button>
-            </li>
-          ))}
-        </ul>
+        <>
+          <ul>
+            {cartItems.map((item) => (
+              <li key={item.id} className="flex justify-between">
+                {item.name} - ${item.price}
+                <button
+                  className="text-red-500"
+                  onClick={() => removeItem(item.id)}
+                >
+                  Remove
+                </button>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-2 font-bold">Total: ${totalPrice}</p>
+        </>
       )}
     </div>
   );
