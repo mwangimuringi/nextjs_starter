@@ -23,6 +23,11 @@ return (
       </ul>
       <p className="mt-2 font-bold">Total: ${total}</p>
     </div>
+  <form className="mt-4 space-y-3">
+  <input type="text" placeholder="Full Name" className="w-full p-2 border rounded-md" />
+  <input type="email" placeholder="Email Address" className="w-full p-2 border rounded-md" />
+  <input type="text" placeholder="Shipping Address" className="w-full p-2 border rounded-md" />
+</form>
   </div>
 );
 };
