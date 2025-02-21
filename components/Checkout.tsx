@@ -40,9 +40,7 @@ const Checkout: React.FC = () => {
     <div className="max-w-lg mx-auto p-6 border rounded-md shadow-md bg-white">
       <h1 className="text-2xl font-bold border-b pb-2">Checkout</h1>
 
-      {submitted ? (
-        <p className="text-green-600 font-semibold mt-4">Order placed successfully!</p>
-      ) : (
+     
         <>
           <div className="mt-4 p-4 border rounded-md bg-gray-50">
             <h2 className="text-lg font-semibold">Order Summary</h2>
@@ -56,7 +54,7 @@ const Checkout: React.FC = () => {
             <p className="mt-2 font-bold text-lg">Total: ${total}</p>
           </div>
         </>
-      )}
+    
     </div>
   );
 };
