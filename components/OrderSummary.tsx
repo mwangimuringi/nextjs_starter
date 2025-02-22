@@ -9,6 +9,9 @@ interface OrderSummaryProps {
 }
 
 const total = items.reduce((acc, item) => acc + item.price, 0);
+if (items.length === 0) {
+    return <p className="text-gray-500">No items in cart</p>;
+  }  
 
 return (
     <div className="mt-4 p-4 border rounded-md bg-gray-50">
