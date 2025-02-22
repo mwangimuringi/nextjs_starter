@@ -84,6 +84,9 @@ const Checkout: React.FC = () => {
             <button type="submit" className="w-full p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
               Proceed to Payment
             </button>
+   
+<OrderSummary items={orderSummary} />
+
           </form>
         </>
       )}
