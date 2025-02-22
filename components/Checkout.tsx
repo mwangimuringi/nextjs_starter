@@ -1,5 +1,5 @@
-// pages/checkout.tsx
 import React, { useState } from "react";
+import OrderSummary from "@/components/OrderSummary";
 
 interface OrderItem {
   id: number;
@@ -20,8 +20,6 @@ const Checkout: React.FC = () => {
     { id: 1, name: "Product 1", price: 20 },
     { id: 2, name: "Product 2", price: 35 },
   ];
-
-  const total = orderSummary.reduce((acc, item) => acc + item.price, 0);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -44,17 +42,8 @@ const Checkout: React.FC = () => {
         <p className="text-green-600 font-semibold mt-4">Order placed successfully!</p>
       ) : (
         <>
-          <div className="mt-4 p-4 border rounded-md bg-gray-50">
-            <h2 className="text-lg font-semibold">Order Summary</h2>
-            <ul className="divide-y">
-              {orderSummary.map((item) => (
-                <li key={item.id} className="flex justify-between py-2">
-                  {item.name} - ${item.price}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-2 font-bold text-lg">Total: ${total}</p>
-          </div>
+          {/* Order Summary Component */}
+          <OrderSummary items={orderSummary} />
 
           <form className="mt-4 space-y-3" onSubmit={handleSubmit}>
             <input
