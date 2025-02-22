@@ -8,17 +8,19 @@ interface OrderSummaryProps {
   items: OrderItem[];
 }
 
-const OrderSummary: React.FC<OrderSummaryProps> = ({ items }) => {
-  return (
-    <div>
-      <h2>Order Summary</h2>
-      <ul>
-        {items.map((item) => (
-          <li key={item.id}>
-            {item.name} - ${item.price}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+const total = items.reduce((acc, item) => acc + item.price, 0);
+
+return (
+  <div>
+    <h2>Order Summary</h2>
+    <ul>
+      {items.map((item) => (
+        <li key={item.id}>
+          {item.name} - ${item.price}
+        </li>
+      ))}
+    </ul>
+    <p>Total: ${total}</p>
+  </div>
+);
+
