@@ -1,4 +1,3 @@
-// pages/checkout.tsx
 import React, { useState } from "react";
 import OrderSummary from "@/components/OrderSummary";
 
