@@ -20,7 +20,10 @@ export const useCart = () => {
       return [...prev, { ...item, quantity: 1 }];
     });
   };
-  
   return { cart };
+  
+  const removeFromCart = (id: number) => {
+    setCart((prev) => prev.filter((item) => item.id !== id));
+  };
   
 };
