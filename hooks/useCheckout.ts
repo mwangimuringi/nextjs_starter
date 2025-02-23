@@ -7,6 +7,10 @@ interface CheckoutData {
   }  
 
 export const useCheckout = () => {
-  const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState<CheckoutData>({
+        name: "",
+        email: "",
+        address: "",
+      });      
   return { formData };
 };
