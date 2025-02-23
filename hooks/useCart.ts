@@ -26,4 +26,8 @@ export const useCart = () => {
     setCart((prev) => prev.filter((item) => item.id !== id));
   };
   
+  const clearCart = () => {
+    setCart([]);
+  };
+  
 };
