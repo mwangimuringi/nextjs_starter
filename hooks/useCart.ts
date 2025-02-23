@@ -9,5 +9,10 @@ interface CartItem {
 
 export const useCart = () => {
   const [cart, setCart] = useState([]);
+  const addToCart = (item: CartItem) => {
+    setCart((prev) => [...prev, { ...item, quantity: 1 }]);
+  };
   return { cart };
+
+  
 };
