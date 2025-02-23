@@ -10,9 +10,17 @@ interface CartItem {
 export const useCart = () => {
   const [cart, setCart] = useState([]);
   const addToCart = (item: CartItem) => {
-    setCart((prev) => [...prev, { ...item, quantity: 1 }]);
+    setCart((prev) => {
+      const existingItem = prev.find((i) => i.id === item.id);
+      if (existingItem) {
+        return prev.map((i) =>
+          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+        );
+      }
+      return [...prev, { ...item, quantity: 1 }];
+    });
   };
+  
   return { cart };
-
   
 };
