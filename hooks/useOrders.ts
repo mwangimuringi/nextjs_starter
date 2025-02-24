@@ -1,4 +1,3 @@
-// hooks/useOrders.ts
 import { useState } from "react";
 
 interface Order {
@@ -11,5 +10,9 @@ interface Order {
 export const useOrders = () => {
   const [orders, setOrders] = useState<Order[]>([]);
 
-  return { orders };
+  const addOrder = (newOrder: Order) => {
+    setOrders((prev) => [...prev, newOrder]);
+  };
+
+  return { orders, addOrder };
 };
