@@ -6,6 +6,10 @@ export const useSearch = () => {
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   };
+
+  const clearSearch = () => {
+    setQuery("");
+  };  
   
   return { query, handleSearch };
 };
