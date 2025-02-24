@@ -11,5 +11,5 @@ export const useSearch = () => {
     setQuery("");
   };  
   
-  return { query, handleSearch };
+  return { query, handleSearch, clearSearch };
 };
