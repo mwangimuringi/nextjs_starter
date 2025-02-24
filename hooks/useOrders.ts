@@ -1,3 +1,4 @@
+// hooks/useOrders.ts
 import { useState } from "react";
 
 interface Order {
@@ -14,14 +15,15 @@ export const useOrders = () => {
     setOrders((prev) => [...prev, newOrder]);
   };
 
-  const updateOrderStatus = (
-    id: number,
-    status: "pending" | "completed" | "canceled"
-  ) => {
+  const updateOrderStatus = (id: number, status: "pending" | "completed" | "canceled") => {
     setOrders((prev) =>
       prev.map((order) => (order.id === id ? { ...order, status } : order))
     );
   };
 
-  return { orders, addOrder, updateOrderStatus };
+  const removeOrder = (id: number) => {
+    setOrders((prev) => prev.filter((order) => order.id !== id));
+  };
+
+  return { orders, addOrder, updateOrderStatus, removeOrder };
 };
