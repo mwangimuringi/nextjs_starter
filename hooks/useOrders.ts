@@ -14,5 +14,14 @@ export const useOrders = () => {
     setOrders((prev) => [...prev, newOrder]);
   };
 
-  return { orders, addOrder };
+  const updateOrderStatus = (
+    id: number,
+    status: "pending" | "completed" | "canceled"
+  ) => {
+    setOrders((prev) =>
+      prev.map((order) => (order.id === id ? { ...order, status } : order))
+    );
+  };
+
+  return { orders, addOrder, updateOrderStatus };
 };
