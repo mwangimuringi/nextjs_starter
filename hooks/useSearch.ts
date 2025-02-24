@@ -7,5 +7,5 @@ export const useSearch = () => {
     setQuery(e.target.value);
   };
   
-  return { query };
+  return { query, handleSearch };
 };
