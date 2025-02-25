@@ -3,6 +3,9 @@ import { useAuth } from '@commercehub/react-components';
 
 export const AuthProvider: React.FC = ({ children }) => {
   const { isAuthenticated, login, logout } = useAuth();
+  console.log('isAuthenticated', isAuthenticated);
+  console.log('login', login);
+  console.log('logout', logout);
 
   return (
     <div>
