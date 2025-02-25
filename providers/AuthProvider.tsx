@@ -8,6 +8,13 @@ export const AuthProvider: React.FC = ({ children }) => {
     <div>
       <div>
         {isAuthenticated ? (
+            <div>Authenticated</div>
+        ) : (
+          <div>Not Authenticated</div>
+        )}
+      </div>
+      <div>
+        {isAuthenticated ? (
           <button onClick={logout}>Logout</button>
         ) : (
           <button onClick={login}>Login</button>
