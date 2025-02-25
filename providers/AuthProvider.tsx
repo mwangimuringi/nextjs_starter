@@ -20,6 +20,11 @@ export const AuthProvider: React.FC = ({ children }) => {
           <button onClick={login}>Login</button>
         )}
       </div>
+      <hr />
+      <div>
+        <h2>AuthProvider</h2>
+        <p>This component is used to wrap the entire application.</p>
+      </div>
       {children}
     </div>
   );
