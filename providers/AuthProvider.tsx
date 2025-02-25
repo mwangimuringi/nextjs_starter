@@ -13,7 +13,9 @@ export const AuthProvider: React.FC = ({ children }) => {
   // TODO: Add a login button
   // TODO: Add a logout button
   // TODO: Add a login button
+
   
+
   return (
     <div>
       <div>
