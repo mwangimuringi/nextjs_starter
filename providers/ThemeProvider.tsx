@@ -1,5 +1,6 @@
 import { ThemeProvider, useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { Sun, Moon } from "lucide-react";
 
 const CustomThemeProvider = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -19,8 +20,12 @@ const ThemeToggle = () => {
   if (!mounted) return null;
 
   return (
-    <button onClick={() => setTheme(theme === "dark" || systemTheme === "dark" ? "light" : "dark")}>
-      {theme === "dark" || systemTheme === "dark" ? "Switch to Light" : "Switch to Dark"}
+    <button
+      onClick={() =>
+        setTheme(theme === "dark" || systemTheme === "dark" ? "light" : "dark")
+      }
+    >
+      {theme === "dark" || systemTheme === "dark" ? <Sun /> : <Moon />}
     </button>
   );
 };
