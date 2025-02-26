@@ -7,12 +7,6 @@ export const AuthProvider: React.FC = ({ children }) => {
   console.log('login', login);
   console.log('logout', logout);
 
-  // TODO: Add a loading state
-  // TODO: Add a error state
-  // TODO: Add a logout button
-  // TODO: Add a login button
-  // TODO: Add a logout button
-  // TODO: Add a login button
   return (
     <div>
       <div>
