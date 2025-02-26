@@ -1,11 +1,18 @@
-import { ClerkProvider, useAuth } from "@clerk/nextjs";
+import { ClerkProvider, useAuth, SignIn, SignOutButton } from "@clerk/nextjs";
 
 const ClerkAuthProvider = ({ children }: { children: React.ReactNode }) => {
   const { isSignedIn } = useAuth();
 
   return (
     <ClerkProvider>
-      {isSignedIn ? children : <p>Please sign in to continue</p>}
+      {isSignedIn ? (
+        <>
+          {children}
+          <SignOutButton>Sign Out</SignOutButton>
+        </>
+      ) : (
+        <SignIn />
+      )}
     </ClerkProvider>
   );
 };
