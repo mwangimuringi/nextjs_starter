@@ -24,6 +24,7 @@ const ThemeToggle = () => {
       onClick={() =>
         setTheme(theme === "dark" || systemTheme === "dark" ? "light" : "dark")
       }
+      className="transition duration-300 ease-in-out transform hover:scale-110"
     >
       {theme === "dark" || systemTheme === "dark" ? <Sun /> : <Moon />}
     </button>
