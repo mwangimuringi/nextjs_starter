@@ -1,6 +1,5 @@
-import { ThemeProvider, useTheme } from "next-themes";
-import { useEffect, useState } from "react";
-import { Sun, Moon } from "lucide-react";
+import { ThemeProvider } from "next-themes";
+import ThemeToggle from "../components/ThemeToggle";
 
 const CustomThemeProvider = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -8,26 +7,6 @@ const CustomThemeProvider = ({ children }: { children: React.ReactNode }) => {
       <ThemeToggle />
       {children}
     </ThemeProvider>
-  );
-};
-
-const ThemeToggle = () => {
-  const { theme, setTheme, systemTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
-
-  if (!mounted) return null;
-
-  return (
-    <button
-      onClick={() =>
-        setTheme(theme === "dark" || systemTheme === "dark" ? "light" : "dark")
-      }
-      className="transition duration-300 ease-in-out transform hover:scale-110"
-    >
-      {theme === "dark" || systemTheme === "dark" ? <Sun /> : <Moon />}
-    </button>
   );
 };
 
