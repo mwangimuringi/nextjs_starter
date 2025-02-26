@@ -1,4 +1,10 @@
-import { ClerkProvider, useAuth, SignIn, SignOutButton } from "@clerk/nextjs";
+import {
+  ClerkProvider,
+  useAuth,
+  SignIn,
+  SignOutButton,
+  UserButton,
+} from "@clerk/nextjs";
 import { useState, useEffect } from "react";
 
 const ClerkAuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -14,10 +20,11 @@ const ClerkAuthProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <ClerkProvider>
       {isSignedIn ? (
-        <>
+        <div>
+          <UserButton />
           {children}
           <SignOutButton>Sign Out</SignOutButton>
-        </>
+        </div>
       ) : (
         <SignIn />
       )}
