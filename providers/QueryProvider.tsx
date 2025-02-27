@@ -1,7 +1,7 @@
 import {
   QueryClient,
   QueryClientProvider,
-  Hydrate,
+  hydrate,
   DehydratedState,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -25,7 +25,7 @@ const QueryProvider = ({
 }) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <Hydrate state={dehydratedState}>{children}</Hydrate>
+      <hydrate state={dehydratedState}>{children}</hydrate>
       {process.env.NODE_ENV === "development" && (
         <ReactQueryDevtools initialIsOpen={false} />
       )}
