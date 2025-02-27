@@ -24,3 +24,23 @@ model Product {
   stock       Int
   createdAt   DateTime @default(now())
 }
+
+model Order {
+  id        String  @id @default(uuid())
+  userId    String
+  user      User    @relation(fields: [userId], references: [id])
+  total     Decimal
+  createdAt DateTime @default(now())
+
+  orderItems OrderItem[]
+}
+
+model OrderItem {
+  id        String  @id @default(uuid())
+  orderId   String
+  order     Order  @relation(fields: [orderId], references: [id])
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int
+  price     Decimal
+}
