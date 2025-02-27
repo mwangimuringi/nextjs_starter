@@ -7,7 +7,7 @@ const CustomThemeProvider = ({ children }: { children: React.ReactNode }) => {
       <ThemeToggle />
       {children}
     </ThemeProvider>
-  );
+);
 };
 
 export default CustomThemeProvider;
