@@ -46,3 +46,12 @@ model OrderItem {
   quantity  Int
   price     Decimal
 }
+
+model User {
+  id         String  @id @default(uuid())
+  email      String  @unique
+  password   String?
+  clerkId    String?  @unique
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
