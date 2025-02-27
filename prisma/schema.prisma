@@ -23,6 +23,8 @@ model Product {
   price       Decimal
   stock       Int
   createdAt   DateTime @default(now())
+
+  orderItems OrderItem[]
 }
 
 model Order {
